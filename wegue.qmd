@@ -1,0 +1,46 @@
+---
+title: "Wegue"
+subtitle: "Costruire passo dopo passo una semplice applicazione cartografica per il web"
+---
+
+## Step 1: Create the Configuration
+
+Open your terminal inside your project directory and create a configuration file.
+
+``` bash
+mkdir -p .config && touch .config/build.properties
+```
+
+::: callout-important
+## Keep Secrets Secure
+
+Never hardcode passwords or API keys inside the `build.properties` file. Always use environment variables.
+:::
+
+## Step 2: Write the Build Script
+
+Add the following layout configuration to your automated build task:
+
+``` json
+{
+  "pipeline": "production",
+  "tasks": ["compile", "test", "package"],
+  "allow_failures": false
+}
+```
+
+::: callout-tip
+## Code Challenge for Fast Learners
+
+Can you modify the JSON structure above to include a `"notify"` array that targets a custom webhook URL? Try it out before moving to step 3!
+:::
+
+## Verification
+
+To verify your setup is running correctly, execute:
+
+``` bash
+npm run verify-pipeline
+```
+
+You should see a green validation confirmation outputted directly to your console window.

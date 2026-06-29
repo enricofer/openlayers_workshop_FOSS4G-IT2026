@@ -1,0 +1,182 @@
+[
+  {
+    "objectID": "openlayers.html",
+    "href": "openlayers.html",
+    "title": "3  Openlayers",
+    "section": "",
+    "text": "3.1 Configurazione dell’ambiente di sviluppo\nPrima di procedere con la creazione della nostra applicazione cartografica, è necessario configurare l’ambiente di sviluppo. Assicurati di avere eseguito le attività previste nella sezione “Prima di iniziare” per Node.js. A questo punto sarà necessario configurare il nostro ambiente di sviluppo scaricando i files d’impianto deployment.zip e decomprimendoli nella cartella di lavoro. All’interno della cartella troverai i seguenti files:\nA questo punto bisognerà inizializzare l’ambiente di sviluppo installando tutti i moduli necessari. Apriremo la finestra del terminale nella cartella di lavoro ed andremo a digitare il seguente comando\nA questo punto potremo far partire il server di sviluppo locale basato su vite.js (che impacchetta i moduli necessari e li consegna al browser) e nodejs\nSe l’installazione è avvenuta correttamente sulla console appariranno i seguenti messaggi:\nQuesto significa che saremo in grado di eseguire l’applicazione compilata collegandoci con il browser all’indirizzo http://localhost:5173/ in cui comparirà una finestra di alert:\nA questo punto potremo sviluppare la nostra applicazione cartografica modificando opportunamente il file index.html ed il file main.js con un editor di testo.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Openlayers</span>"
+    ]
+  },
+  {
+    "objectID": "openlayers.html#step-1-create-the-configuration",
+    "href": "openlayers.html#step-1-create-the-configuration",
+    "title": "3  Openlayers",
+    "section": "",
+    "text": "mkdir -p .config && touch .config/build.properties\n\n\n\n\n\n\nImportantKeep Secrets Secure\n\n\n\nNever hardcode passwords or API keys inside the build.properties file. Always use environment variables.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Openlayers</span>"
+    ]
+  },
+  {
+    "objectID": "openlayers.html#step-2-write-the-build-script",
+    "href": "openlayers.html#step-2-write-the-build-script",
+    "title": "3  Openlayers",
+    "section": "3.2 Step 2: Write the Build Script",
+    "text": "3.2 Step 2: Write the Build Script\nAdd the following layout configuration to your automated build task:\n{\n  \"pipeline\": \"production\",\n  \"tasks\": [\"compile\", \"test\", \"package\"],\n  \"allow_failures\": false\n}\n\n\n\n\n\n\nTipCode Challenge for Fast Learners\n\n\n\nCan you modify the JSON structure above to include a \"notify\" array that targets a custom webhook URL? Try it out before moving to step 3!",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Openlayers</span>"
+    ]
+  },
+  {
+    "objectID": "openlayers.html#verification",
+    "href": "openlayers.html#verification",
+    "title": "3  Openlayers",
+    "section": "3.3 Verification",
+    "text": "3.3 Verification\nTo verify your setup is running correctly, execute:\nnpm run verify-pipeline\nYou should see a green validation confirmation outputted directly to your console window.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Openlayers</span>"
+    ]
+  },
+  {
+    "objectID": "wegue.html",
+    "href": "wegue.html",
+    "title": "4  Wegue",
+    "section": "",
+    "text": "4.1 Step 1: Create the Configuration\nOpen your terminal inside your project directory and create a configuration file.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Wegue</span>"
+    ]
+  },
+  {
+    "objectID": "wegue.html#step-1-create-the-configuration",
+    "href": "wegue.html#step-1-create-the-configuration",
+    "title": "4  Wegue",
+    "section": "",
+    "text": "mkdir -p .config && touch .config/build.properties\n\n\n\n\n\n\nImportantKeep Secrets Secure\n\n\n\nNever hardcode passwords or API keys inside the build.properties file. Always use environment variables.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Wegue</span>"
+    ]
+  },
+  {
+    "objectID": "wegue.html#step-2-write-the-build-script",
+    "href": "wegue.html#step-2-write-the-build-script",
+    "title": "4  Wegue",
+    "section": "4.2 Step 2: Write the Build Script",
+    "text": "4.2 Step 2: Write the Build Script\nAdd the following layout configuration to your automated build task:\n{\n  \"pipeline\": \"production\",\n  \"tasks\": [\"compile\", \"test\", \"package\"],\n  \"allow_failures\": false\n}\n\n\n\n\n\n\nTipCode Challenge for Fast Learners\n\n\n\nCan you modify the JSON structure above to include a \"notify\" array that targets a custom webhook URL? Try it out before moving to step 3!",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Wegue</span>"
+    ]
+  },
+  {
+    "objectID": "wegue.html#verification",
+    "href": "wegue.html#verification",
+    "title": "4  Wegue",
+    "section": "4.3 Verification",
+    "text": "4.3 Verification\nTo verify your setup is running correctly, execute:\nnpm run verify-pipeline\nYou should see a green validation confirmation outputted directly to your console window.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Wegue</span>"
+    ]
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "OSS4G-IT 2026 OpenLayers Workshop",
+    "section": "",
+    "text": "1 FOSS4G-IT 2026 OpenLayers Workshop\nPubblicare dati geospaziali e realizzare applicazioni cartografiche su web con OpenLayers e WEGUE webgis\n(C)2026 Enrico Ferreguti",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>FOSS4G-IT 2026 OpenLayers Workshop</span>"
+    ]
+  },
+  {
+    "objectID": "index.html#overview",
+    "href": "index.html#overview",
+    "title": "OSS4G-IT 2026 OpenLayers Workshop",
+    "section": "1.1 Overview",
+    "text": "1.1 Overview\nBenvenuti al workshop di FOSS4G-IT 2026 dedicato a OpenLayers e WEGUE webgis. In questo laboratorio, imparerete a pubblicare dati geospaziali sul web e a sviluppare applicazioni cartografiche interattive utilizzando le librerie OpenLayers e WEGUE.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>FOSS4G-IT 2026 OpenLayers Workshop</span>"
+    ]
+  },
+  {
+    "objectID": "index.html#schedule",
+    "href": "index.html#schedule",
+    "title": "OSS4G-IT 2026 OpenLayers Workshop",
+    "section": "1.2 Schedule",
+    "text": "1.2 Schedule\n\n\n\n14:00 - 16:00\nPubblicazione su web di dati geospaziali con Openlayers\n\n\n16:00 - 16:15\nCoffee Break\n\n\n16:15 - 18:00\nSviluppo di applicazioni cartografiche con Vuejs Openlayers e Wegue Webgis",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>FOSS4G-IT 2026 OpenLayers Workshop</span>"
+    ]
+  },
+  {
+    "objectID": "index.html#prima-di-iniziare",
+    "href": "index.html#prima-di-iniziare",
+    "title": "OSS4G-IT 2026 OpenLayers Workshop",
+    "section": "1.3 Prima di iniziare",
+    "text": "1.3 Prima di iniziare\nPrima di iniziare il workshop, segui le istruzioni nella pagina Setup per configurare la tua macchina locale.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>FOSS4G-IT 2026 OpenLayers Workshop</span>"
+    ]
+  },
+  {
+    "objectID": "setup.html",
+    "href": "setup.html",
+    "title": "2  Prima di iniziare",
+    "section": "",
+    "text": "2.1 Sviluppare in JavaScript con Node.js\nNello sviluppo web tradizionale basato esclusivamente su HTML, ogni pagina viene costruita principalmente come documento statico e l’aggiunta di funzionalità avanzate richiede spesso una gestione manuale di script, dipendenze e organizzazione del codice. Questo approccio può diventare rapidamente difficile da mantenere quando il progetto cresce.\nSviluppare in JavaScript con Node.js è particolarmente vantaggioso per la ricchezza del suo ecosistema di pacchetti. Attraverso npm (Node Package Manager), gli sviluppatori hanno accesso a centinaia di migliaia di librerie già pronte che coprono esigenze comuni come gestione delle interfacce, sviluppo di API, testing, automazione e integrazione con servizi esterni.\nQuesto approccio consente di ridurre il tempo necessario per implementare funzionalità standard, favorire il riuso del codice e adottare rapidamente strumenti consolidati dalla comunità. L’ampiezza e la maturità dell’ecosistema rendono JavaScript e Node.js una scelta efficace per sviluppare applicazioni moderne in modo rapido e con un elevato livello di flessibilità.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Prima di iniziare</span>"
+    ]
+  },
+  {
+    "objectID": "setup.html#installazione-di-node.js",
+    "href": "setup.html#installazione-di-node.js",
+    "title": "2  Prima di iniziare",
+    "section": "2.2 Installazione di Node.js",
+    "text": "2.2 Installazione di Node.js\n\naccedi al sito https://nodejs.org/en/download/current\ninstallazione con version manager:\n\nseleziona piattaforma (WINDOWS, LINUX, MACOS)\nseleziona strumento di installazione (suggerisco nvm per LINUX o MACOS, chocolatey per WINDOWS)\nseleziona package manager (suggerisco npm)\napri console (terminal per LINUX o MACOS, powershell per WINDOWS)\nesegui i comandi indicati (non servono diritti amministrativi dell’utente)\n\noppure installazione con pacchetto eseguibile (necessario utente con diritti di installazione):\n\nandare alla sezione get a prebuilt Node.js®\nScaricare l’eseguibile binario\nEseguire ed installare (verificare diritti amministrativi dell’utente)\n\n\nScelta editor",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Prima di iniziare</span>"
+    ]
+  },
+  {
+    "objectID": "openlayers.html#configurazione-dellambiente-di-sviluppo",
+    "href": "openlayers.html#configurazione-dellambiente-di-sviluppo",
+    "title": "3  Openlayers",
+    "section": "",
+    "text": "data (dir)\nContiene dati geospaziali di esempio\n\n\nexamples (dir)\nContiene esempi tratti da openlayers.org\n\n\nindex.html\nParte Html dell’applicazione\n\n\nmain.js\nParte javascript dell’applicazione\n\n\npackage.json\nContiene i metadati dell’applicazione e le relative dipendenze\n\n\npackage-lock.json\nContiene le dipendenze effettivamente installate\n\n\nvite.config.js\nContiene la configurazione dell’ambiente di sviluppo\n\n\n\n\nnpm install\n\nnpm start\n\n  VITE v3.2.11  ready in 834 ms\n\n  ➜  Local:   http://localhost:5173/\n  ➜  Network: use --host to expose",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Openlayers</span>"
+    ]
+  },
+  {
+    "objectID": "openlayers.html#i-concetti-base-di-openlayers",
+    "href": "openlayers.html#i-concetti-base-di-openlayers",
+    "title": "3  Openlayers",
+    "section": "3.2 I concetti base di openlayers:",
+    "text": "3.2 I concetti base di openlayers:\nPrima di iniziare a lavorare con OpenLayers è bene capire i concetti chiave di OpenLayers:\n\n\n\n\n\n\n\nCol1\nCol2\n\n\n\n\nMap\nLa map è un componente chiave di OpenLayers. Per un map da visualizzare, sono necessari una view, uno o più layers e un contenitore di destinazione.\n\n\nView\nLa view determina come la mappa è renderizzata. È usata per impostare la risoluzione, le coordinate del centro, ecc. È come una camera attraverso il quale si accede al contenuto della mappa.\n\n\nLayers\nLayers possono essere alla mappa in ordine impilato, questo fa si che, i layers più in basso sono renderizzati prima dei layers più in alto. Layers possono essere sia layers raster (images), che layers vettoriali (punti/linee/poligoni).\n\n\nSource\nOgni layer ha una source, che conosce come caricare il contenuto del layer. Nel caso di layers vettoriali, la sorgente è letta da dati vettoriali usando una classe format (per esempio GeoJSON o KML) e riempe il layer con un numero di features.\n\n\nFeatures\nFeatures rappresentano cose del mondo reale e possono essere renderizzate con differenti geometries (come punti, linee o poligoni) usando un dato style, che determina il suo aspetto (spessore delle linee, colore di riempiemento, etc).",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Openlayers</span>"
+    ]
+  },
+  {
+    "objectID": "openlayers.html#creare-una-mappa-di-base",
+    "href": "openlayers.html#creare-una-mappa-di-base",
+    "title": "3  Openlayers",
+    "section": "3.3 Creare una mappa di base",
+    "text": "3.3 Creare una mappa di base\nModificare il file index.html con il seguente contenuto:\n&lt;!DOCTYPE html&gt;\n&lt;html&gt;\n  &lt;head&gt;\n    &lt;meta charset=\"utf-8\"&gt;\n    &lt;title&gt;Workshop OpenLayers - FOSS4G-IT 2026 Trento&lt;/title&gt;\n    &lt;style&gt;\n      @import \"node_modules/ol/ol.css\";\n    &lt;/style&gt;\n    &lt;style&gt;\n      html, body, #map-container {\n        margin: 0;\n        height: 100%;\n        width: 100%;\n        font-family: sans-serif;\n      }\n    &lt;/style&gt;\n  &lt;/head&gt;\n  &lt;body&gt;\n    &lt;div id=\"map-container\"&gt;&lt;/div&gt;\n    &lt;script src=\"./main.js\" type=\"module\"&gt;&lt;/script&gt;\n  &lt;/body&gt;\n&lt;/html&gt;\nmodificare poi il file main.js con il seguente contenuto:\nimport OSM from 'ol/source/OSM';\nimport TileLayer from 'ol/layer/Tile';\nimport {Map, View} from 'ol';\nimport {fromLonLat} from 'ol/proj';\n\nnew Map({\n  target: 'map-container',\n  layers: [\n    new TileLayer({\n      source: new OSM(),\n    }),\n  ],\n  view: new View({\n    center: fromLonLat([0, 0]),\n    zoom: 2,\n  }),\n});\nOsserviamo che:\n\nLa mappa è contenuta in un’elemento\n\nche ha l’id “map-container”\n\nChe lo stile definito nel codice HTML scala l’elemento a tutto schermo\nChe l’oggetto Map è definito al minimo specificando il target con “map-container” (che deve corrispondere a quello definito nella pagina HTML), un set di layers ed una view\nche l’oggetto layer contiene una sorgente dati (source)\n\nProviamo a:\n\nLocalizzare la vista su Trento città\nDefinire una mappa di determinate dimensioni, per esempio 600 x 600 pixel\nAnalizzare errori e connessioni di rete con gli strumenti di sviluppo del browser",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Openlayers</span>"
+    ]
+  },
+  {
+    "objectID": "openlayers.html#arricchicchire-la-mappa-con-informazioni-personalizzate",
+    "href": "openlayers.html#arricchicchire-la-mappa-con-informazioni-personalizzate",
+    "title": "3  Openlayers",
+    "section": "3.4 Arricchicchire la mappa con informazioni personalizzate",
+    "text": "3.4 Arricchicchire la mappa con informazioni personalizzate\n\nAggiungiamo le informazioni relative ai confini amministrativi dei comune del Trentino (data/countries.geojson)\n\nimport GeoJSON from 'ol/format/GeoJSON';\nimport Map from 'ol/Map';\nimport VectorLayer from 'ol/layer/Vector';\nimport VectorSource from 'ol/source/Vector';\nimport View from 'ol/View';\n\n// attenzione definiamo l'oggetto mappa e la assegnamo ad una variable per altri usi successivi\nconst map = new Map({\n  target: 'map-container',\n  layers: [\n    new VectorLayer({\n      source: new VectorSource({\n        format: new GeoJSON(),\n        url: './data/countries.json',\n      }),\n    }),\n  ],\n  view: new View({\n    center: [0,0],\n    zoom: 2,\n  }),\n});",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Openlayers</span>"
+    ]
+  }
+]

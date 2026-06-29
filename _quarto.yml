@@ -1,0 +1,46 @@
+project:
+  type: book
+  output-dir: _output/website
+
+book:
+  title: "OSS4G-IT 2026 OpenLayers Workshop"
+  subtitle: "Pubblicazione su web di dati geospaziali con Openlayers e sviluppo di applicazioni cartografiche con Vuejs Openlayers e Wegue Webgis"
+  chapters:
+    - index.qmd
+    - setup.qmd
+    - openlayers.qmd
+    - wegue.qmd
+  page-navigation: true
+  search: true
+
+format:
+  html:
+    theme: cosmo
+    toc: true
+    number-sections: true
+    code-copy: true
+    code-overflow: wrap
+    html-math-method: katex
+
+  pdf:
+    toc: true
+    number-sections: true
+    documentclass: scrbook
+    geometry:
+      - top=25mm
+      - bottom=25mm
+      - left=25mm
+      - right=25mm
+    colorlinks: true
+    code-overflow: wrap
+    code-line-numbers: false
+    fig-pos: "H"
+    include-in-header:
+      text: |
+        \usepackage{fvextra}
+        \usepackage{float}
+        % Wrapping per i blocchi di codice con syntax highlighting (pandoc/quarto)
+        \DefineVerbatimEnvironment{Highlighting}{Verbatim}{breaklines=true,breakanywhere=true,commandchars=\\\{\}}
+        % Wrapping per i blocchi verbatim “semplici” (spesso output/terminal)
+        \DefineVerbatimEnvironment{verbatim}{Verbatim}{breaklines=true,breakanywhere=true}
+

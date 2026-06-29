@@ -1,0 +1,38 @@
+---
+title: "Prima di iniziare"
+subtitle: "installazione di Node js"
+---
+
+## Sviluppare in JavaScript con Node.js
+
+Nello sviluppo web tradizionale basato esclusivamente su HTML, ogni pagina viene costruita principalmente come documento statico e l’aggiunta di funzionalità avanzate richiede spesso una gestione manuale di script, dipendenze e organizzazione del codice. Questo approccio può diventare rapidamente difficile da mantenere quando il progetto cresce.
+
+Sviluppare in JavaScript con Node.js è particolarmente vantaggioso per la ricchezza del suo ecosistema di pacchetti. Attraverso **npm (Node Package Manager)**, gli sviluppatori hanno accesso a centinaia di migliaia di librerie già pronte che coprono esigenze comuni come gestione delle interfacce, sviluppo di API, testing, automazione e integrazione con servizi esterni.
+
+Questo approccio consente di ridurre il tempo necessario per implementare funzionalità standard, favorire il riuso del codice e adottare rapidamente strumenti consolidati dalla comunità. L’ampiezza e la maturità dell’ecosistema rendono JavaScript e Node.js una scelta efficace per sviluppare applicazioni moderne in modo rapido e con un elevato livello di flessibilità.
+
+## Installazione di Node.js
+
+1.  accedi al sito <https://nodejs.org/en/download/current>
+
+2.  installazione con version manager:
+
+    1.  seleziona piattaforma (WINDOWS, LINUX, MACOS)
+
+    2.  seleziona strumento di installazione (suggerisco nvm per LINUX o MACOS, chocolatey per WINDOWS)
+
+    3.  seleziona package manager (suggerisco npm)
+
+    4.  apri console (terminal per LINUX o MACOS, powershell per WINDOWS)
+
+    5.  esegui i comandi indicati (non servono diritti amministrativi dell'utente)
+
+3.  oppure installazione con pacchetto eseguibile (necessario utente con diritti di installazione):
+
+    1.  andare alla sezione *get a prebuilt Node.js®*
+
+    2.  Scaricare l'eseguibile binario
+
+    3.  Eseguire ed installare (verificare diritti amministrativi dell'utente)
+
+Scelta editor

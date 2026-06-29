@@ -1,0 +1,26 @@
+---
+title: "FOSS4G-IT 2026 OpenLayers Workshop"
+subtitle: "Pubblicare dati geospaziali e realizzare applicazioni cartografiche su web con OpenLayers e WEGUE webgis"
+---
+
+# FOSS4G-IT 2026 OpenLayers Workshop
+
+Pubblicare dati geospaziali e realizzare applicazioni cartografiche su web con OpenLayers e WEGUE webgis
+
+![](images/Cc_by-sa.png) (C)2026 [Enrico Ferreguti](https://talks.osgeo.org/foss4g-it-2026/speaker/G99NKE/)
+
+## Overview
+
+Benvenuti al workshop di FOSS4G-IT 2026 dedicato a OpenLayers e WEGUE webgis. In questo laboratorio, imparerete a pubblicare dati geospaziali sul web e a sviluppare applicazioni cartografiche interattive utilizzando le librerie OpenLayers e WEGUE.
+
+## Schedule
+
+|  |  |
+|----------------|-----------------------------------------------|
+| 14:00 - 16:00 | [Pubblicazione su web di dati geospaziali con Openlayers](https://talks.osgeo.org/foss4g-it-2026/talk/73CURC/) |
+| 16:00 - 16:15 | *Coffee Break* |
+| 16:15 - 18:00 | [Sviluppo di applicazioni cartografiche con Vuejs Openlayers e Wegue Webgis](https://talks.osgeo.org/foss4g-it-2026/talk/83BHWM/) |
+
+## Prima di iniziare
+
+Prima di iniziare il workshop, segui le istruzioni nella pagina [Setup](setup.qmd) per configurare la tua macchina locale.
