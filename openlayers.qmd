@@ -49,12 +49,18 @@ A questo punto potremo sviluppare la nostra applicazione cartografica modificand
 Prima di iniziare a lavorare con OpenLayers è bene capire i concetti chiave di OpenLayers:
 
 | Col1 | Col2 |
-|--------------------------|----------------------------------------------|
-| **Map** | La *map* è un componente chiave di OpenLayers. Per un *map* da visualizzare, sono necessari una *view*, uno o più *layers* e un contenitore di destinazione. |
-| **View** | La *view* determina come la mappa è renderizzata. È usata per impostare la risoluzione, le coordinate del centro, ecc. È come una camera attraverso il quale si accede al contenuto della mappa. |
-| **Layers** | *Layers* possono essere alla mappa in ordine impilato, questo fa si che, i layers più in basso sono renderizzati prima dei layers più in alto. Layers possono essere sia *layers raster* (images), che *layers vettoriali* (punti/linee/poligoni). |
-| **Source** | Ogni layer ha una *source*, che conosce come caricare il contenuto del layer. Nel caso di *layers vettoriali*, la sorgente è letta da dati vettoriali usando una classe *format* (per esempio GeoJSON o KML) e riempe il layer con un numero di *features*. |
-| **Features** | *Features* rappresentano cose del mondo reale e possono essere renderizzate con differenti *geometries* (come punti, linee o poligoni) usando un dato *style*, che determina il suo aspetto (spessore delle linee, colore di riempiemento, etc). |
+|-------------|----------------------------------------------|
+| [**Map**](https://openlayers.org/en/latest/apidoc/module-ol_Map-Map.html) | La *map* è un componente chiave di OpenLayers. Per un *map* da visualizzare, sono necessari una *view*, uno o più *layers* e un contenitore di destinazione. |
+| [**View**](https://openlayers.org/en/latest/apidoc/module-ol_View-View.html) | La *view* determina come la mappa è renderizzata. È usata per impostare la risoluzione, le coordinate del centro, ecc. È come una camera attraverso il quale si accede al contenuto della mappa. |
+| [**Layer**](https://openlayers.org/en/latest/apidoc/module-ol_layer_Layer-Layer.html) | *Layers* possono essere alla mappa in ordine impilato, questo fa si che, i layers più in basso sono renderizzati prima dei layers più in alto. Layers possono essere sia [*layers di immagini*](https://openlayers.org/en/latest/apidoc/module-ol_layer_Image-ImageLayer.html)(images), che [*layers vettoriali*](https://openlayers.org/en/latest/apidoc/module-ol_layer_Vector-VectorLayer.html) (punti/linee/poligoni), anche frazionati in tiles |
+| **Source** | Ogni layer ha una *source*, che conosce come caricare il contenuto del layer. Nel caso di [*source vettoriali*](https://openlayers.org/en/latest/apidoc/module-ol_source_Vector-VectorSource.html), la sorgente è letta da dati vettoriali usando una classe *format* (per esempio GeoJSON o KML) e riempe il layer con un numero di *features*. |
+| [**Feature**](https://openlayers.org/en/latest/apidoc/module-ol_Feature-Feature.html) | *Features* rappresentano cose del mondo reale e possono essere renderizzate con differenti [*geometries* ](https://openlayers.org/en/latest/apidoc/module-ol_geom_Geometry-Geometry.html)(come punti, linee o poligoni) usando un dato *style*, che determina il suo aspetto (spessore delle linee, colore di riempiemento, etc). |
+| Interaction | La famiglia degli oggetti di interazione permette di interagire con l'oggetto mappa permettendo di indicare punti, creare, modificare  e disegnare nuove entità etc |
+| Control | La famiglia degli oggetti di interazione permette di interagire con l'oggetto mappa, modificando la visualizzazione, inserendo dei widget in posizioni prefissate sullo schermo, che fungono da interfaccia utente personalizzabile (per esempio i pulsanti di zoom) |
+
+Tutti gli oggetti di Openlayers con la spiegazione precisa dei loro metodi, eventi e proprietà sono desccritti nelle [API](https://openlayers.org/en/latest/apidoc/)
+
+L'uso dei vari oggetti è dimostrato tramite [esempi](https://openlayers.org/en/latest/examples/)
 
 ## Creare una mappa di base
 
@@ -109,13 +115,19 @@ new Map({
 
 Osserviamo che:
 
-- La mappa è contenuta in un'elemento <DIV> che ha l'id "map-container"
+- La mappa è contenuta in un'elemento
+
+  ::: {}
+  che ha l'id "map-container"
+  :::
 
 - Che lo stile definito nel codice HTML scala l'elemento a tutto schermo
 
 - Che l'oggetto Map è definito al minimo specificando il target con "map-container" (che deve corrispondere a quello definito nella pagina HTML), un set di layers ed una view
 
 - che l'oggetto layer contiene una sorgente dati (source)
+
+- che il centro della mappa è ricavato con la funzione `fromLonLat`. Di default la mappa viene visualizzata nele sistema di riferimento Web-Mercator e le coordinate espresse in latitudine e longitune devono essere convertite tramite una funzione
 
 Proviamo a:
 
@@ -125,9 +137,9 @@ Proviamo a:
 
 - Analizzare errori e connessioni di rete con gli strumenti di sviluppo del browser
 
-## Arricchicchire la mappa con informazioni personalizzate
+## Creare una mappa con informazioni personalizzate
 
-- Aggiungiamo le informazioni relative ai confini amministrativi dei comune del Trentino (data/countries.geojson)
+- Aggiungiamo le informazioni relative ai confini amministrativi degli stati del mondo (data/countries.geojson)
 
 ``` javascript
 import GeoJSON from 'ol/format/GeoJSON';
@@ -135,6 +147,7 @@ import Map from 'ol/Map';
 import VectorLayer from 'ol/layer/Vector';
 import VectorSource from 'ol/source/Vector';
 import View from 'ol/View';
+import {fromLonLat} from 'ol/proj';
 
 // attenzione definiamo l'oggetto mappa e la assegnamo ad una variable per altri usi successivi
 const map = new Map({
@@ -148,8 +161,108 @@ const map = new Map({
     }),
   ],
   view: new View({
-    center: [0,0],
+    center: fromLonLat([0, 0]),
     zoom: 2,
   }),
 });
+```
+
+- uniamo insieme il layer del confini statali e delle mappe di base
+
+``` javascript
+import OSM from 'ol/source/OSM';
+import TileLayer from 'ol/layer/Tile';
+import GeoJSON from 'ol/format/GeoJSON';
+import Map from 'ol/Map';
+import VectorLayer from 'ol/layer/Vector';
+import VectorSource from 'ol/source/Vector';
+import View from 'ol/View';
+import {fromLonLat} from 'ol/proj';
+
+const stati = new VectorLayer({
+  source: new VectorSource({
+    format: new GeoJSON(),
+    url: './data/countries.json',
+  }),
+})
+
+const osm = new TileLayer({
+  source: new OSM(),
+})
+
+const map = new Map({
+  target: 'map-container',
+  layers: [stati, osm],
+  view: new View({
+    center: fromLonLat([0, 0]),
+    zoom: 2,
+  }),
+})
+```
+
+- e se volessimo aggiungere le regioni italiane ... senza dimenticare di aggiungerlo alla lista dei layers dell'oggetto Map
+
+``` javascript
+const regioni = new VectorLayer({
+  source: new VectorSource({
+    format: new GeoJSON(),
+    url: 'https://raw.githubusercontent.com/openpolis/geojson-italy/refs/heads/master/geojson/limits_IT_regions.geojson',
+  }),
+});
+```
+
+- e se vogliamo cambiare la visualizzazione di default basta intervenire sui parametri dell'oggetto View
+
+``` javascript
+  view: new View({
+    center: fromLonLat([12.6, 42.3]),
+    zoom: 6,
+  }),
+```
+
+## Modificare lo stile di visualizzazione dei layers vettoriali
+
+lo stile è una proprietà dell'oggetto Layer e deve essere definito per mezzo di un oggetto [Style](https://openlayers.org/en/latest/apidoc/module-ol_style_Style.html) e che può riguardare vari aspetti della visualizzazione come il colore, il riempimento, lo spessore, il tipo di linea etc... per esempio andiamo a definire uno stile diverso da quello di default per il layer delle regioni italiane:
+
+``` javascript
+import Fill from 'ol/style/Fill.js';
+import Stroke from 'ol/style/Stroke.js';
+import Style from 'ol/style/Style.js';
+
+const regioni = new VectorLayer({
+  source: new VectorSource({
+    format: new GeoJSON(),
+    url: 'https://raw.githubusercontent.com/openpolis/geojson-italy/refs/heads/master/geojson/limits_IT_regions.geojson',
+  }),
+  style: new Style({
+    stroke: new Stroke({
+      color: 'orange',
+      width: 4,
+    }),
+    fill: new Fill({
+      color: 'rgba(120, 0, 255, 0.25)',
+    }),
+  }),
+});
+```
+
+- possiamo definire lo stile di un layer con una *style function* che genera uno stile dinamicamente a seconda della feature e della risoluzione (non dimentichiamoci di mettere il riferimento allo stile in
+
+``` javascript
+import Text from 'ol/style/Text.js';
+
+function labelStyle(feature, resolution) {
+    return new Style({
+        stroke: new Stroke({
+            color: 'orange',
+            width: 4,
+        }),
+        fill: new Fill({
+            color: 'rgba(120, 0, 255, 0.25)',
+        }),
+        text: new Text({
+            text: feature.get("reg_name"),
+        })
+    })
+}
 ```

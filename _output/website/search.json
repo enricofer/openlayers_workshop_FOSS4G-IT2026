@@ -1,85 +1,5 @@
 [
   {
-    "objectID": "openlayers.html",
-    "href": "openlayers.html",
-    "title": "3  Openlayers",
-    "section": "",
-    "text": "3.1 Configurazione dell’ambiente di sviluppo\nPrima di procedere con la creazione della nostra applicazione cartografica, è necessario configurare l’ambiente di sviluppo. Assicurati di avere eseguito le attività previste nella sezione “Prima di iniziare” per Node.js. A questo punto sarà necessario configurare il nostro ambiente di sviluppo scaricando i files d’impianto deployment.zip e decomprimendoli nella cartella di lavoro. All’interno della cartella troverai i seguenti files:\nA questo punto bisognerà inizializzare l’ambiente di sviluppo installando tutti i moduli necessari. Apriremo la finestra del terminale nella cartella di lavoro ed andremo a digitare il seguente comando\nA questo punto potremo far partire il server di sviluppo locale basato su vite.js (che impacchetta i moduli necessari e li consegna al browser) e nodejs\nSe l’installazione è avvenuta correttamente sulla console appariranno i seguenti messaggi:\nQuesto significa che saremo in grado di eseguire l’applicazione compilata collegandoci con il browser all’indirizzo http://localhost:5173/ in cui comparirà una finestra di alert:\nA questo punto potremo sviluppare la nostra applicazione cartografica modificando opportunamente il file index.html ed il file main.js con un editor di testo.",
-    "crumbs": [
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Openlayers</span>"
-    ]
-  },
-  {
-    "objectID": "openlayers.html#step-1-create-the-configuration",
-    "href": "openlayers.html#step-1-create-the-configuration",
-    "title": "3  Openlayers",
-    "section": "",
-    "text": "mkdir -p .config && touch .config/build.properties\n\n\n\n\n\n\nImportantKeep Secrets Secure\n\n\n\nNever hardcode passwords or API keys inside the build.properties file. Always use environment variables.",
-    "crumbs": [
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Openlayers</span>"
-    ]
-  },
-  {
-    "objectID": "openlayers.html#step-2-write-the-build-script",
-    "href": "openlayers.html#step-2-write-the-build-script",
-    "title": "3  Openlayers",
-    "section": "3.2 Step 2: Write the Build Script",
-    "text": "3.2 Step 2: Write the Build Script\nAdd the following layout configuration to your automated build task:\n{\n  \"pipeline\": \"production\",\n  \"tasks\": [\"compile\", \"test\", \"package\"],\n  \"allow_failures\": false\n}\n\n\n\n\n\n\nTipCode Challenge for Fast Learners\n\n\n\nCan you modify the JSON structure above to include a \"notify\" array that targets a custom webhook URL? Try it out before moving to step 3!",
-    "crumbs": [
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Openlayers</span>"
-    ]
-  },
-  {
-    "objectID": "openlayers.html#verification",
-    "href": "openlayers.html#verification",
-    "title": "3  Openlayers",
-    "section": "3.3 Verification",
-    "text": "3.3 Verification\nTo verify your setup is running correctly, execute:\nnpm run verify-pipeline\nYou should see a green validation confirmation outputted directly to your console window.",
-    "crumbs": [
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Openlayers</span>"
-    ]
-  },
-  {
-    "objectID": "wegue.html",
-    "href": "wegue.html",
-    "title": "4  Wegue",
-    "section": "",
-    "text": "4.1 Step 1: Create the Configuration\nOpen your terminal inside your project directory and create a configuration file.",
-    "crumbs": [
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Wegue</span>"
-    ]
-  },
-  {
-    "objectID": "wegue.html#step-1-create-the-configuration",
-    "href": "wegue.html#step-1-create-the-configuration",
-    "title": "4  Wegue",
-    "section": "",
-    "text": "mkdir -p .config && touch .config/build.properties\n\n\n\n\n\n\nImportantKeep Secrets Secure\n\n\n\nNever hardcode passwords or API keys inside the build.properties file. Always use environment variables.",
-    "crumbs": [
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Wegue</span>"
-    ]
-  },
-  {
-    "objectID": "wegue.html#step-2-write-the-build-script",
-    "href": "wegue.html#step-2-write-the-build-script",
-    "title": "4  Wegue",
-    "section": "4.2 Step 2: Write the Build Script",
-    "text": "4.2 Step 2: Write the Build Script\nAdd the following layout configuration to your automated build task:\n{\n  \"pipeline\": \"production\",\n  \"tasks\": [\"compile\", \"test\", \"package\"],\n  \"allow_failures\": false\n}\n\n\n\n\n\n\nTipCode Challenge for Fast Learners\n\n\n\nCan you modify the JSON structure above to include a \"notify\" array that targets a custom webhook URL? Try it out before moving to step 3!",
-    "crumbs": [
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Wegue</span>"
-    ]
-  },
-  {
-    "objectID": "wegue.html#verification",
-    "href": "wegue.html#verification",
-    "title": "4  Wegue",
-    "section": "4.3 Verification",
-    "text": "4.3 Verification\nTo verify your setup is running correctly, execute:\nnpm run verify-pipeline\nYou should see a green validation confirmation outputted directly to your console window.",
-    "crumbs": [
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Wegue</span>"
-    ]
-  },
-  {
     "objectID": "index.html",
     "href": "index.html",
     "title": "OSS4G-IT 2026 OpenLayers Workshop",
@@ -140,6 +60,16 @@
     ]
   },
   {
+    "objectID": "openlayers.html",
+    "href": "openlayers.html",
+    "title": "3  Openlayers",
+    "section": "",
+    "text": "3.1 Configurazione dell’ambiente di sviluppo\nPrima di procedere con la creazione della nostra applicazione cartografica, è necessario configurare l’ambiente di sviluppo. Assicurati di avere eseguito le attività previste nella sezione “Prima di iniziare” per Node.js. A questo punto sarà necessario configurare il nostro ambiente di sviluppo scaricando i files d’impianto deployment.zip e decomprimendoli nella cartella di lavoro. All’interno della cartella troverai i seguenti files:\nA questo punto bisognerà inizializzare l’ambiente di sviluppo installando tutti i moduli necessari. Apriremo la finestra del terminale nella cartella di lavoro ed andremo a digitare il seguente comando\nA questo punto potremo far partire il server di sviluppo locale basato su vite.js (che impacchetta i moduli necessari e li consegna al browser) e nodejs\nSe l’installazione è avvenuta correttamente sulla console appariranno i seguenti messaggi:\nQuesto significa che saremo in grado di eseguire l’applicazione compilata collegandoci con il browser all’indirizzo http://localhost:5173/ in cui comparirà una finestra di alert:\nA questo punto potremo sviluppare la nostra applicazione cartografica modificando opportunamente il file index.html ed il file main.js con un editor di testo.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Openlayers</span>"
+    ]
+  },
+  {
     "objectID": "openlayers.html#configurazione-dellambiente-di-sviluppo",
     "href": "openlayers.html#configurazione-dellambiente-di-sviluppo",
     "title": "3  Openlayers",
@@ -177,6 +107,86 @@
     "text": "3.4 Arricchicchire la mappa con informazioni personalizzate\n\nAggiungiamo le informazioni relative ai confini amministrativi dei comune del Trentino (data/countries.geojson)\n\nimport GeoJSON from 'ol/format/GeoJSON';\nimport Map from 'ol/Map';\nimport VectorLayer from 'ol/layer/Vector';\nimport VectorSource from 'ol/source/Vector';\nimport View from 'ol/View';\n\n// attenzione definiamo l'oggetto mappa e la assegnamo ad una variable per altri usi successivi\nconst map = new Map({\n  target: 'map-container',\n  layers: [\n    new VectorLayer({\n      source: new VectorSource({\n        format: new GeoJSON(),\n        url: './data/countries.json',\n      }),\n    }),\n  ],\n  view: new View({\n    center: [0,0],\n    zoom: 2,\n  }),\n});",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Openlayers</span>"
+    ]
+  },
+  {
+    "objectID": "wegue.html",
+    "href": "wegue.html",
+    "title": "4  Wegue",
+    "section": "",
+    "text": "4.1 Wegue Webgis\nWegue (WebGIS con OpenLayers and Vue) combina insieme il framework Vue.js Con Openlayers per realizzare velocemente applicazioni cartografiche. Mette a disposizione numerosi widget e controlli visuali predefiniti realizzati con il framework Vuetify. Funge da template per ridurre il lavoro d’impianto per applicazioni cartografiche basate su browser.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Wegue</span>"
+    ]
+  },
+  {
+    "objectID": "wegue.html#step-1-create-the-configuration",
+    "href": "wegue.html#step-1-create-the-configuration",
+    "title": "4  Wegue",
+    "section": "",
+    "text": "mkdir -p .config && touch .config/build.properties\n\n\n\n\n\n\nImportantKeep Secrets Secure\n\n\n\nNever hardcode passwords or API keys inside the build.properties file. Always use environment variables.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Wegue</span>"
+    ]
+  },
+  {
+    "objectID": "wegue.html#step-2-write-the-build-script",
+    "href": "wegue.html#step-2-write-the-build-script",
+    "title": "4  Wegue",
+    "section": "4.2 Step 2: Write the Build Script",
+    "text": "4.2 Step 2: Write the Build Script\nAdd the following layout configuration to your automated build task:\n{\n  \"pipeline\": \"production\",\n  \"tasks\": [\"compile\", \"test\", \"package\"],\n  \"allow_failures\": false\n}\n\n\n\n\n\n\nTipCode Challenge for Fast Learners\n\n\n\nCan you modify the JSON structure above to include a \"notify\" array that targets a custom webhook URL? Try it out before moving to step 3!",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Wegue</span>"
+    ]
+  },
+  {
+    "objectID": "wegue.html#verification",
+    "href": "wegue.html#verification",
+    "title": "4  Wegue",
+    "section": "4.3 Verification",
+    "text": "4.3 Verification\nTo verify your setup is running correctly, execute:\nnpm run verify-pipeline\nYou should see a green validation confirmation outputted directly to your console window.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Wegue</span>"
+    ]
+  },
+  {
+    "objectID": "openlayers.html#creare-una-mappa-con-informazioni-personalizzate",
+    "href": "openlayers.html#creare-una-mappa-con-informazioni-personalizzate",
+    "title": "3  Openlayers",
+    "section": "3.4 Creare una mappa con informazioni personalizzate",
+    "text": "3.4 Creare una mappa con informazioni personalizzate\n\nAggiungiamo le informazioni relative ai confini amministrativi degli stati del mondo (data/countries.geojson)\n\nimport GeoJSON from 'ol/format/GeoJSON';\nimport Map from 'ol/Map';\nimport VectorLayer from 'ol/layer/Vector';\nimport VectorSource from 'ol/source/Vector';\nimport View from 'ol/View';\nimport {fromLonLat} from 'ol/proj';\n\n// attenzione definiamo l'oggetto mappa e la assegnamo ad una variable per altri usi successivi\nconst map = new Map({\n  target: 'map-container',\n  layers: [\n    new VectorLayer({\n      source: new VectorSource({\n        format: new GeoJSON(),\n        url: './data/countries.json',\n      }),\n    }),\n  ],\n  view: new View({\n    center: fromLonLat([0, 0]),\n    zoom: 2,\n  }),\n});\n\nuniamo insieme il layer del confini statali e delle mappe di base\n\nimport OSM from 'ol/source/OSM';\nimport TileLayer from 'ol/layer/Tile';\nimport GeoJSON from 'ol/format/GeoJSON';\nimport Map from 'ol/Map';\nimport VectorLayer from 'ol/layer/Vector';\nimport VectorSource from 'ol/source/Vector';\nimport View from 'ol/View';\nimport {fromLonLat} from 'ol/proj';\n\nconst stati = new VectorLayer({\n  source: new VectorSource({\n    format: new GeoJSON(),\n    url: './data/countries.json',\n  }),\n})\n\nconst osm = new TileLayer({\n  source: new OSM(),\n})\n\nconst map = new Map({\n  target: 'map-container',\n  layers: [stati, osm],\n  view: new View({\n    center: fromLonLat([0, 0]),\n    zoom: 2,\n  }),\n})\n\ne se volessimo aggiungere le regioni italiane … senza dimenticare di aggiungerlo alla lista dei layers dell’oggetto Map\n\nconst regioni = new VectorLayer({\n  source: new VectorSource({\n    format: new GeoJSON(),\n    url: 'https://raw.githubusercontent.com/openpolis/geojson-italy/refs/heads/master/geojson/limits_IT_regions.geojson',\n  }),\n});\n\ne se vogliamo cambiare la visualizzazione di default basta intervenire sui parametri dell’oggetto View\n\n  view: new View({\n    center: fromLonLat([12.6, 42.3]),\n    zoom: 6,\n  }),",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Openlayers</span>"
+    ]
+  },
+  {
+    "objectID": "openlayers.html#modificare-lo-stile-di-visualizzazione-dei-layers-vettoriali",
+    "href": "openlayers.html#modificare-lo-stile-di-visualizzazione-dei-layers-vettoriali",
+    "title": "3  Openlayers",
+    "section": "3.5 Modificare lo stile di visualizzazione dei layers vettoriali",
+    "text": "3.5 Modificare lo stile di visualizzazione dei layers vettoriali\nlo stile è una proprietà dell’oggetto Layer e deve essere definito per mezzo di un oggetto Style e che può riguardare vari aspetti della visualizzazione come il colore, il riempimento, lo spessore, il tipo di linea etc… per esempio andiamo a definire uno stile diverso da quello di default per il layer delle regioni italiane:\nimport Fill from 'ol/style/Fill.js';\nimport Stroke from 'ol/style/Stroke.js';\nimport Style from 'ol/style/Style.js';\n\nconst regioni = new VectorLayer({\n  source: new VectorSource({\n    format: new GeoJSON(),\n    url: 'https://raw.githubusercontent.com/openpolis/geojson-italy/refs/heads/master/geojson/limits_IT_regions.geojson',\n  }),\n  style: new Style({\n    stroke: new Stroke({\n      color: 'orange',\n      width: 4,\n    }),\n    fill: new Fill({\n      color: 'rgba(120, 0, 255, 0.25)',\n    }),\n  }),\n});\n\npossiamo definire lo stile di un layer con una style function che genera uno stile dinamicamente a seconda della feature e della risoluzione (non dimentichiamoci di mettere il riferimento allo stile in\n\nimport Text from 'ol/style/Text.js';\n\nfunction labelStyle(feature, resolution) {\n    return new Style({\n        stroke: new Stroke({\n            color: 'orange',\n            width: 4,\n        }),\n        fill: new Fill({\n            color: 'rgba(120, 0, 255, 0.25)',\n        }),\n        text: new Text({\n            text: feature.get(\"reg_name\"),\n        })\n    })\n}",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Openlayers</span>"
+    ]
+  },
+  {
+    "objectID": "wegue.html#wegue-webgis",
+    "href": "wegue.html#wegue-webgis",
+    "title": "4  Wegue",
+    "section": "",
+    "text": "4.1.1 Installazione\nE’ possibile scaricare l’applicazione dal repository di github https://github.com/wegue-oss/wegue direttamente sotto forma difile .zip oppure clonare il repository con git (usiamo per uniformità la versione 2 di wegue)\ngit clone https://github.com/wegue-oss/wegue\ncd wegue\ngit checkout v2.0.0\nUna volta clonato o scaricato ed espanso il file zip è necessario aprire il terminale nella cartella di installazione (riferirsi a “prima di iniziare”) ed installare i pacchetti javascript necessari:\nnpm install\nuna volta installate le dipendenze bisogna inizializzare l’app Wegue:\nnpm run init:app\ned avviare il server di sviluppo che rende disponibile in locale una versione di test dell’applicazione cartografica all’indirizzo http://localhost:5173/:\nnpm run dev\ne dovrebbe apparire la visualizzazione di default dell’applicazione:\n\nalla fine dello sviluppo sarà necessario compilare l’applicazione per ottenere nella cartella dist i file da servire in produzione con un server http (apache, nginx etc…)\nnpm run build",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Wegue</span>"
+    ]
+  },
+  {
+    "objectID": "wegue.html#adattare-la-configurazione-alle-proprie-esigenze",
+    "href": "wegue.html#adattare-la-configurazione-alle-proprie-esigenze",
+    "title": "4  Wegue",
+    "section": "4.2 Adattare la configurazione alle proprie esigenze",
+    "text": "4.2 Adattare la configurazione alle proprie esigenze\nLe componenti configurabili dell’nstallazione di Wegue sono contenute nella cartella app il cui contenuto dovrebbe più o meno corrispondere al seguente:\napp\n│   .gitignore\n│   README.md\n│   WguApp.vue\n│   WguAppTemplate.vue\n│\n├───components\n│       AppFooter.vue\n│       AppHeader.vue\n│       AppSidebar.vue\n│       SampleModule.vue\n│\n├───locales\n│       de.json\n│       en.json\n│       fr.json\n│       pt.json\n│\n├───public\n│   └───static\n│       │   app-conf-minimal.json\n│       │   app-conf-projected.json\n│       │   app-conf-sidebar.json\n│       │   app-conf.json\n│       │\n│       ├───data\n│       │       2012_Earthquakes_Mag5.kml\n│       │       shops-dannstadt.geojson\n│       │\n│       └───icon\n│               circle.svg\n│               favicon.ico\n│\n└───styles\n        app.css\n        vuetify-settings.scss\nPer cambiare la configurazione basta modificare a nostro piacimento il contenuto di questi files, in particolare la configurazione generale di default è data dal file public/static/app-conf.json. Il file controlla tutto quello che può essere visto in Wegue: I vari layers, con le relative configurazioni ed in componenti dell’interfaccia utente. Il file è in formato json (Javascript object notation), che è il tipico formato di interscambio di dati strutturati facilmente interpretabile in javascript e “human readable”, editabile con un editor di testo\nE’ particolarmente importante prestare attenzione alla sintassi del file, in quanto anche un minimo errore compromette il funzionamento dell’applicazione.\nIl file app-conf.json è composto da una serie di direttive, molte delle quali opzionali. La configurazione minima prevede almeno la definizione del centro della mappa e del relativo zoom, della configurazione dei moduli e dei layer:\n{\n\n  \"mapZoom\": 2,\n  \"mapCenter\": [0, 0],\n\n  \"mapLayers\": [\n    {\n      \"type\": \"OSM\",\n      \"name\": \"OpenStreetMap\"\n    },\n    {\n      \"type\": \"VECTOR\",\n      \"name\": \"Regioni d'italia\",\n      \"url\": \"https://raw.githubusercontent.com/openpolis/geojson-italy/refs/heads/master/geojson/limits_IT_regions.geojson\",\n      \"lid\": \"regioni\",\n      \"format\": 'GeoJSON'\n    }\n  ]\n}",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Wegue</span>"
     ]
   }
 ]

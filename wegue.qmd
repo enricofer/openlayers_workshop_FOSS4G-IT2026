@@ -3,44 +3,115 @@ title: "Wegue"
 subtitle: "Costruire passo dopo passo una semplice applicazione cartografica per il web"
 ---
 
-## Step 1: Create the Configuration
+## Wegue Webgis
 
-Open your terminal inside your project directory and create a configuration file.
+Wegue (WebGIS con OpenLayers and Vue) combina insieme il framework Vue.js Con Openlayers per realizzare velocemente applicazioni cartografiche. Mette a disposizione numerosi widget e controlli visuali predefiniti realizzati con il framework Vuetify. Funge da template per ridurre il lavoro d'impianto per applicazioni cartografiche basate su browser.
+
+### Installazione
+
+E' possibile scaricare l'applicazione dal repository di github <https://github.com/wegue-oss/wegue> direttamente sotto forma di[ file .zip](git clone https://github.com/wegue-oss/wegue) oppure clonare il repository con git (usiamo per uniformità la versione 2 di wegue)
 
 ``` bash
-mkdir -p .config && touch .config/build.properties
+git clone https://github.com/wegue-oss/wegue
+cd wegue
+git checkout v2.0.0
 ```
 
-::: callout-important
-## Keep Secrets Secure
+Una volta clonato o scaricato ed espanso il file zip è necessario aprire il terminale nella cartella di installazione (riferirsi a ["prima di iniziare"](setup.qmd)) ed installare i pacchetti javascript necessari:
 
-Never hardcode passwords or API keys inside the `build.properties` file. Always use environment variables.
-:::
+```         
+npm install
+```
 
-## Step 2: Write the Build Script
+una volta installate le dipendenze bisogna inizializzare l'app Wegue:
 
-Add the following layout configuration to your automated build task:
+```         
+npm run init:app
+```
+
+ed avviare il server di sviluppo che rende disponibile in locale una versione di test dell'applicazione cartografica all'indirizzo <http://localhost:5173/>:
+
+```         
+npm run dev
+```
+
+e dovrebbe apparire la visualizzazione di default dell'applicazione:
+
+![](https://wegue-oss.github.io/wegue/_media/workshop/default-map.png)
+
+alla fine dello sviluppo sarà necessario compilare l'applicazione per ottenere nella cartella `dist` i file da servire in produzione con un server http (apache, nginx etc...)
+
+```         
+npm run build
+```
+
+## Adattare la configurazione alle proprie esigenze
+
+Le componenti configurabili dell'nstallazione di Wegue sono contenute nella cartella `app` il cui contenuto dovrebbe più o meno corrispondere al seguente:
+
+```         
+app
+│   .gitignore
+│   README.md
+│   WguApp.vue
+│   WguAppTemplate.vue
+│
+├───components
+│       AppFooter.vue
+│       AppHeader.vue
+│       AppSidebar.vue
+│       SampleModule.vue
+│
+├───locales
+│       de.json
+│       en.json
+│       fr.json
+│       pt.json
+│
+├───public
+│   └───static
+│       │   app-conf-minimal.json
+│       │   app-conf-projected.json
+│       │   app-conf-sidebar.json
+│       │   app-conf.json
+│       │
+│       ├───data
+│       │       2012_Earthquakes_Mag5.kml
+│       │       shops-dannstadt.geojson
+│       │
+│       └───icon
+│               circle.svg
+│               favicon.ico
+│
+└───styles
+        app.css
+        vuetify-settings.scss
+```
+
+Per cambiare la configurazione basta modificare a nostro piacimento il contenuto di questi files, in particolare la configurazione generale di default è data dal file `public/static/app-conf.json`. Il file controlla tutto quello che può essere visto in Wegue: I vari layers, con le relative configurazioni ed in componenti dell'interfaccia utente. Il file è in formato [json](https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/JSON?utm_source=chatgpt.com) (Javascript object notation), che è il tipico formato di interscambio di dati strutturati facilmente interpretabile in javascript e *"human readable",* editabile con un editor di testo
+
+E' particolarmente importante prestare attenzione alla sintassi del file, in quanto anche un minimo errore compromette il funzionamento dell'applicazione.
+
+Il file app-conf.json è composto da una serie di direttive, molte delle quali opzionali. La configurazione minima prevede almeno la definizione del centro della mappa e del relativo zoom, della configurazione dei moduli e dei layer:
 
 ``` json
 {
-  "pipeline": "production",
-  "tasks": ["compile", "test", "package"],
-  "allow_failures": false
+
+  "mapZoom": 2,
+  "mapCenter": [0, 0],
+
+  "mapLayers": [
+    {
+      "type": "OSM",
+      "name": "OpenStreetMap"
+    },
+    {
+      "type": "VECTOR",
+      "name": "Regioni d'italia",
+      "url": "https://raw.githubusercontent.com/openpolis/geojson-italy/refs/heads/master/geojson/limits_IT_regions.geojson",
+      "lid": "regioni",
+      "format": 'GeoJSON'
+    }
+  ]
 }
 ```
-
-::: callout-tip
-## Code Challenge for Fast Learners
-
-Can you modify the JSON structure above to include a `"notify"` array that targets a custom webhook URL? Try it out before moving to step 3!
-:::
-
-## Verification
-
-To verify your setup is running correctly, execute:
-
-``` bash
-npm run verify-pipeline
-```
-
-You should see a green validation confirmation outputted directly to your console window.

@@ -78,7 +78,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-bfb1ccc4c0c597f0202209f017568c65.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-ec8eff129d6f50c8392963982e963180.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -178,9 +178,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#step-1-create-the-configuration" id="toc-step-1-create-the-configuration" class="nav-link active" data-scroll-target="#step-1-create-the-configuration"><span class="header-section-number">4.1</span> Step 1: Create the Configuration</a></li>
-  <li><a href="#step-2-write-the-build-script" id="toc-step-2-write-the-build-script" class="nav-link" data-scroll-target="#step-2-write-the-build-script"><span class="header-section-number">4.2</span> Step 2: Write the Build Script</a></li>
-  <li><a href="#verification" id="toc-verification" class="nav-link" data-scroll-target="#verification"><span class="header-section-number">4.3</span> Verification</a></li>
+  <li><a href="#wegue-webgis" id="toc-wegue-webgis" class="nav-link active" data-scroll-target="#wegue-webgis"><span class="header-section-number">4.1</span> Wegue Webgis</a>
+  <ul class="collapse">
+  <li><a href="#installazione" id="toc-installazione" class="nav-link" data-scroll-target="#installazione"><span class="header-section-number">4.1.1</span> Installazione</a></li>
+  </ul></li>
+  <li><a href="#adattare-la-configurazione-alle-proprie-esigenze" id="toc-adattare-la-configurazione-alle-proprie-esigenze" class="nav-link" data-scroll-target="#adattare-la-configurazione-alle-proprie-esigenze"><span class="header-section-number">4.2</span> Adattare la configurazione alle proprie esigenze</a></li>
   </ul>
 </nav>
     </div>
@@ -207,51 +209,88 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="step-1-create-the-configuration" class="level2" data-number="4.1">
-<h2 data-number="4.1" class="anchored" data-anchor-id="step-1-create-the-configuration"><span class="header-section-number">4.1</span> Step 1: Create the Configuration</h2>
-<p>Open your terminal inside your project directory and create a configuration file.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> .config <span class="kw">&amp;&amp;</span> <span class="fu">touch</span> .config/build.properties</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="callout callout-style-default callout-important callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Important</span>Keep Secrets Secure
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Never hardcode passwords or API keys inside the <code>build.properties</code> file. Always use environment variables.</p>
-</div>
-</div>
+<section id="wegue-webgis" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="wegue-webgis"><span class="header-section-number">4.1</span> Wegue Webgis</h2>
+<p>Wegue (WebGIS con OpenLayers and Vue) combina insieme il framework Vue.js Con Openlayers per realizzare velocemente applicazioni cartografiche. Mette a disposizione numerosi widget e controlli visuali predefiniti realizzati con il framework Vuetify. Funge da template per ridurre il lavoro d’impianto per applicazioni cartografiche basate su browser.</p>
+<section id="installazione" class="level3" data-number="4.1.1">
+<h3 data-number="4.1.1" class="anchored" data-anchor-id="installazione"><span class="header-section-number">4.1.1</span> Installazione</h3>
+<p>E’ possibile scaricare l’applicazione dal repository di github <a href="https://github.com/wegue-oss/wegue" class="uri">https://github.com/wegue-oss/wegue</a> direttamente sotto forma di<a href="git clone https://github.com/wegue-oss/wegue">file .zip</a> oppure clonare il repository con git (usiamo per uniformità la versione 2 di wegue)</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/wegue-oss/wegue</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> wegue</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> checkout v2.0.0</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Una volta clonato o scaricato ed espanso il file zip è necessario aprire il terminale nella cartella di installazione (riferirsi a <a href="./setup.html">“prima di iniziare”</a>) ed installare i pacchetti javascript necessari:</p>
+<pre><code>npm install</code></pre>
+<p>una volta installate le dipendenze bisogna inizializzare l’app Wegue:</p>
+<pre><code>npm run init:app</code></pre>
+<p>ed avviare il server di sviluppo che rende disponibile in locale una versione di test dell’applicazione cartografica all’indirizzo <a href="http://localhost:5173/" class="uri">http://localhost:5173/</a>:</p>
+<pre><code>npm run dev</code></pre>
+<p>e dovrebbe apparire la visualizzazione di default dell’applicazione:</p>
+<p><img src="https://wegue-oss.github.io/wegue/_media/workshop/default-map.png" class="img-fluid"></p>
+<p>alla fine dello sviluppo sarà necessario compilare l’applicazione per ottenere nella cartella <code>dist</code> i file da servire in produzione con un server http (apache, nginx etc…)</p>
+<pre><code>npm run build</code></pre>
 </section>
-<section id="step-2-write-the-build-script" class="level2" data-number="4.2">
-<h2 data-number="4.2" class="anchored" data-anchor-id="step-2-write-the-build-script"><span class="header-section-number">4.2</span> Step 2: Write the Build Script</h2>
-<p>Add the following layout configuration to your automated build task:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"pipeline"</span><span class="fu">:</span> <span class="st">"production"</span><span class="fu">,</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"tasks"</span><span class="fu">:</span> <span class="ot">[</span><span class="st">"compile"</span><span class="ot">,</span> <span class="st">"test"</span><span class="ot">,</span> <span class="st">"package"</span><span class="ot">]</span><span class="fu">,</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"allow_failures"</span><span class="fu">:</span> <span class="kw">false</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Code Challenge for Fast Learners
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Can you modify the JSON structure above to include a <code>"notify"</code> array that targets a custom webhook URL? Try it out before moving to step 3!</p>
-</div>
-</div>
 </section>
-<section id="verification" class="level2" data-number="4.3">
-<h2 data-number="4.3" class="anchored" data-anchor-id="verification"><span class="header-section-number">4.3</span> Verification</h2>
-<p>To verify your setup is running correctly, execute:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">npm</span> run verify-pipeline</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>You should see a green validation confirmation outputted directly to your console window.</p>
+<section id="adattare-la-configurazione-alle-proprie-esigenze" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="adattare-la-configurazione-alle-proprie-esigenze"><span class="header-section-number">4.2</span> Adattare la configurazione alle proprie esigenze</h2>
+<p>Le componenti configurabili dell’nstallazione di Wegue sono contenute nella cartella <code>app</code> il cui contenuto dovrebbe più o meno corrispondere al seguente:</p>
+<pre><code>app
+│   .gitignore
+│   README.md
+│   WguApp.vue
+│   WguAppTemplate.vue
+│
+├───components
+│       AppFooter.vue
+│       AppHeader.vue
+│       AppSidebar.vue
+│       SampleModule.vue
+│
+├───locales
+│       de.json
+│       en.json
+│       fr.json
+│       pt.json
+│
+├───public
+│   └───static
+│       │   app-conf-minimal.json
+│       │   app-conf-projected.json
+│       │   app-conf-sidebar.json
+│       │   app-conf.json
+│       │
+│       ├───data
+│       │       2012_Earthquakes_Mag5.kml
+│       │       shops-dannstadt.geojson
+│       │
+│       └───icon
+│               circle.svg
+│               favicon.ico
+│
+└───styles
+        app.css
+        vuetify-settings.scss</code></pre>
+<p>Per cambiare la configurazione basta modificare a nostro piacimento il contenuto di questi files, in particolare la configurazione generale di default è data dal file <code>public/static/app-conf.json</code>. Il file controlla tutto quello che può essere visto in Wegue: I vari layers, con le relative configurazioni ed in componenti dell’interfaccia utente. Il file è in formato <a href="https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/JSON?utm_source=chatgpt.com">json</a> (Javascript object notation), che è il tipico formato di interscambio di dati strutturati facilmente interpretabile in javascript e <em>“human readable”,</em> editabile con un editor di testo</p>
+<p>E’ particolarmente importante prestare attenzione alla sintassi del file, in quanto anche un minimo errore compromette il funzionamento dell’applicazione.</p>
+<p>Il file app-conf.json è composto da una serie di direttive, molte delle quali opzionali. La configurazione minima prevede almeno la definizione del centro della mappa e del relativo zoom, della configurazione dei moduli e dei layer:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"mapZoom"</span><span class="fu">:</span> <span class="dv">2</span><span class="fu">,</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"mapCenter"</span><span class="fu">:</span> <span class="ot">[</span><span class="dv">0</span><span class="ot">,</span> <span class="dv">0</span><span class="ot">]</span><span class="fu">,</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"mapLayers"</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">{</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"type"</span><span class="fu">:</span> <span class="st">"OSM"</span><span class="fu">,</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"OpenStreetMap"</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">{</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"type"</span><span class="fu">:</span> <span class="st">"VECTOR"</span><span class="fu">,</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"Regioni d'italia"</span><span class="fu">,</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"url"</span><span class="fu">:</span> <span class="st">"https://raw.githubusercontent.com/openpolis/geojson-italy/refs/heads/master/geojson/limits_IT_regions.geojson"</span><span class="fu">,</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"lid"</span><span class="fu">:</span> <span class="st">"regioni"</span><span class="fu">,</span></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"format"</span><span class="fu">:</span> <span class="er">'GeoJSON'</span></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">}</span></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>  <span class="ot">]</span></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 
 
 </section>
