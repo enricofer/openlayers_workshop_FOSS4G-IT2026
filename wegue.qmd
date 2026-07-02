@@ -9,7 +9,7 @@ Wegue (WebGIS con OpenLayers and Vue) combina insieme il framework Vue.js Con Op
 
 ### Installazione
 
-E' possibile scaricare l'applicazione dal repository di github <https://github.com/wegue-oss/wegue> direttamente sotto forma di[ file .zip](git clone https://github.com/wegue-oss/wegue) oppure clonare il repository con git (usiamo per uniformità la versione 2 di wegue)
+E' possibile scaricare l'applicazione dal repository di github <https://github.com/wegue-oss/wegue> direttamente sotto forma di[file .zip](git%20clone%20https://github.com/wegue-oss/wegue) oppure clonare il repository con git (usiamo per uniformità la versione 2 di wegue)
 
 ``` bash
 git clone https://github.com/wegue-oss/wegue
@@ -92,26 +92,237 @@ Per cambiare la configurazione basta modificare a nostro piacimento il contenuto
 
 E' particolarmente importante prestare attenzione alla sintassi del file, in quanto anche un minimo errore compromette il funzionamento dell'applicazione.
 
-Il file app-conf.json è composto da una serie di direttive, molte delle quali opzionali. La configurazione minima prevede almeno la definizione del centro della mappa e del relativo zoom, della configurazione dei moduli e dei layer:
+Il file app-conf.json è composto da una serie di direttive, molte delle quali opzionali. La configurazione minima prevede almeno la definizione del centro della mappa e del relativo zoom, e dei layer:
 
 ``` json
 {
 
-  "mapZoom": 2,
-  "mapCenter": [0, 0],
+  "mapZoom": 6,
+  "mapCenter": [1384958,5221972],
+
+  "mapLayers": [
+
+    {
+      "type": "VECTOR",
+      "lid": "Regioni",
+      "url": "https://raw.githubusercontent.com/openpolis/geojson-italy/refs/heads/master/geojson/limits_IT_regions.geojson",
+      "format": "GeoJSON",
+      "visible": true
+    },
+
+    {
+      "type": "OSM",
+      "lid": "osm-bg",
+      "isBaseLayer": true,
+      "visible": true,
+      "crossOrigin": "anonymous"
+    }
+  ]
+
+}
+```
+
+### Definire uno stile per un layer vettoriale
+
+Il layer vettoriale usa lo stile di visualizzazione di default, ma è possibile definirne uno di personalizzato aggiungendo la proprietà `style` (prestare attenzione alla virgola di separazione)
+
+``` json
+,
+      "style": {
+        "strokeColor": "purple",
+        "strokeWidth": 3,
+        "fillColor": "rgba(155,153,51,0.5)",
+        "label": {
+          "attribute": "reg_name",
+          "outlineColor": "white",
+          "outlineWidth": 2,
+          "fillColor": "black",
+          "offsetX": 0,
+          "offsetY": 15,
+          "align": "center"
+        }
+```
+
+### Aggiungere un layer
+
+E' possibile aggiungere altri layers, semplicemente inserendo dei nuovi oggetti nidificati nella lista "layers". I layers possono essere di vari tipi: VECTOR, WFS, VECTORTILE, WMS (tiled o image), WMS, XYZ, Arcgis REST:
+
+``` json
+    {
+      "type": "TILEWMS",
+      "lid": "carta geologica",
+      "format": "image/png",
+      "layers": "GE.CARTAGEOLOGICA",
+      "url": "http://wms.pcn.minambiente.it/ogc?map=/ms_ogc/WMS_v1.3/Vettoriali/Carta_geologica.map",
+      "transparent": true,
+      "projection": "EPSG:3857",
+      "attribution": "(C)Ministero ambiente",
+      "isBaseLayer": false,
+      "visible": false,
+      "displayInLayerList": true,
+      "legend": true,
+      "opacityControl": true,
+      "crossOrigin": "anonymous"
+    },
+
+    {
+      "type": "XYZ",
+      "url": "https://mt1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}",
+      "lid": "google satellite",
+      "isBaseLayer": true,
+      "visible": false,
+      "crossOrigin": "anonymous"
+    },
+```
+
+### Moduli aggiuntivi
+
+E' possibile aggiungere dei moduli aggiuntivi per mezzo della sezione moduli. Andiamo ad aggiungere dopo la sezione layers la sezione moduli con i componenti dedicati alla gestione della visualizzazione dei layers(layerlist), ed all'ottenimento delle informazioni tabellari (infoclick e attributetable)
+
+E' Importante notare che per rispettare la sintassi json va aggiunta una virgola ',' come separatore tra parametri
+
+``` json
+,
+   "modules": {
+       "wgu-layerlist": {
+          "target": "menu",
+          "win": "floating",
+          "icon": "md:layers",
+          "draggable": false
+        },
+        "wgu-infoclick": {
+          "target": "menu",
+          "win": "floating",
+          "icon": "md:info",
+          "draggable": false,
+          "initPos": {
+            "left": 8,
+            "top": 74
+          },
+          "showMedia": false
+        },
+        "wgu-attributetable": {
+          "target": "menu",
+          "win": "floating",
+          "icon": "md:table_chart",
+          "syncTableMapSelection": true
+        }
+    }
+```
+
+Riassumiamo la configurazione così come definita fino a questo momento
+
+``` json
+{
+
+  "mapZoom": 6,
+  "mapCenter": [1384958,5221972],
 
   "mapLayers": [
     {
-      "type": "OSM",
-      "name": "OpenStreetMap"
+      "type": "VECTOR",
+      "lid": "Regioni",
+      "url": "https://raw.githubusercontent.com/openpolis/geojson-italy/refs/heads/master/geojson/limits_IT_regions.geojson",
+      "format": "GeoJSON",
+      "visible": true,
+      "style": {
+        "strokeColor": "purple",
+        "strokeWidth": 3,
+        "fillColor": "rgba(155,153,51,0.5)",
+        "label": {
+          "attribute": "reg_name",
+          "outlineColor": "white",
+          "outlineWidth": 2,
+          "fillColor": "black",
+          "offsetX": 0,
+          "offsetY": 15,
+          "align": "center"
+        }
+      }
     },
     {
-      "type": "VECTOR",
-      "name": "Regioni d'italia",
-      "url": "https://raw.githubusercontent.com/openpolis/geojson-italy/refs/heads/master/geojson/limits_IT_regions.geojson",
-      "lid": "regioni",
-      "format": 'GeoJSON'
+      "type": "TILEWMS",
+      "lid": "carta geologica",
+      "format": "image/png",
+      "layers": "GE.CARTAGEOLOGICA",
+      "url": "http://wms.pcn.minambiente.it/ogc?map=/ms_ogc/WMS_v1.3/Vettoriali/Carta_geologica.map",
+      "transparent": true,
+      "projection": "EPSG:3857",
+      "attribution": "(C)Ministero ambiente",
+      "isBaseLayer": false,
+      "visible": false,
+      "displayInLayerList": true,
+      "legend": true,
+      "opacityControl": true,
+      "crossOrigin": "anonymous"
+    },
+    {
+      "type": "XYZ",
+      "url": "https://mt1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}",
+      "lid": "google satellite",
+      "isBaseLayer": true,
+      "visible": false,
+      "crossOrigin": "anonymous"
+    },
+    {
+      "type": "OSM",
+      "lid": "osm-bg",
+      "isBaseLayer": true,
+      "visible": true
     }
-  ]
+  ],
+
+   "modules": {
+       "wgu-layerlist": {
+          "target": "menu",
+          "win": "floating",
+          "icon": "md:layers",
+          "draggable": false
+        },
+        "wgu-infoclick": {
+          "target": "menu",
+          "win": "floating",
+          "icon": "md:info",
+          "draggable": false,
+          "initPos": {
+            "left": 8,
+            "top": 74
+          },
+          "showMedia": false
+        },
+        "wgu-attributetable": {
+          "target": "menu",
+          "win": "floating",
+          "icon": "md:table_chart",
+          "syncTableMapSelection": true
+        }
+    }
 }
 ```
+
+Altre e più complesse configurazioni si possono ottenere aggiungendo altri moduli, e parametri personalizzati come da istruzioni specifiche: <https://wegue-oss.github.io/wegue/#/wegue-configuration>
+
+## Localizzazione
+
+La webmap può essere facilmente localizzata andando ad aggiungere un file nella cartella locales con la sigla della lingua. Per esempio nel caso si volesse localizzare in italiano si deve creare il file it.json (E' opportuno copiare il file en.json e sostituire le stringhe target in inglese, *NON LE CHIAVI!*) ed aggiungere degli opportuni parametri di controllo nel file di configurazione:
+
+``` json
+  "lang": {
+    "supported": {
+      "en": "English",
+      "it": "Italiano"
+    },
+    "fallback": "it"
+  },
+```
+
+## Uso di configurazioni alternative
+
+L'applicazione consente di lavorare con differenti configurazioni. Si noti infatti che nella cartella public/static sono presenti diversi files che iniziano per app_conf e terminano per json. In questo caso è possibile richiamare le configurazioni alternative aggiungendo il parametro appCtx=\[stringa tra `app_conf-` e `.json`\]. Per esempio:
+
+| File di configurazione in app/public/static | url |
+|-------------------------|-----------------------------------------------|
+| app-conf.json | <http://localhost:5173/index.html> |
+| app-conf-minimal.json | <http://localhost:5173/index.html?appCtx=minimal> |
+| app-conf-sidebar.json | <http://localhost:5173/index.html?appCtx=sidebar> |
+| app-conf-projected.json | <http://localhost:5173/index.html?appCtx=projected> |
