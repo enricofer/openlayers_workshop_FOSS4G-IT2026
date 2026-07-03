@@ -182,7 +182,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#configurazione-dellambiente-di-sviluppo" id="toc-configurazione-dellambiente-di-sviluppo" class="nav-link active" data-scroll-target="#configurazione-dellambiente-di-sviluppo"><span class="header-section-number">3.1</span> Configurazione dell’ambiente di sviluppo</a></li>
   <li><a href="#i-concetti-base-di-openlayers" id="toc-i-concetti-base-di-openlayers" class="nav-link" data-scroll-target="#i-concetti-base-di-openlayers"><span class="header-section-number">3.2</span> I concetti base di openlayers:</a></li>
   <li><a href="#creare-una-mappa-di-base" id="toc-creare-una-mappa-di-base" class="nav-link" data-scroll-target="#creare-una-mappa-di-base"><span class="header-section-number">3.3</span> Creare una mappa di base</a></li>
-  <li><a href="#arricchicchire-la-mappa-con-informazioni-personalizzate" id="toc-arricchicchire-la-mappa-con-informazioni-personalizzate" class="nav-link" data-scroll-target="#arricchicchire-la-mappa-con-informazioni-personalizzate"><span class="header-section-number">3.4</span> Arricchicchire la mappa con informazioni personalizzate</a></li>
+  <li><a href="#creare-una-mappa-con-informazioni-personalizzate" id="toc-creare-una-mappa-con-informazioni-personalizzate" class="nav-link" data-scroll-target="#creare-una-mappa-con-informazioni-personalizzate"><span class="header-section-number">3.4</span> Creare una mappa con informazioni personalizzate</a></li>
+  <li><a href="#modificare-lo-stile-di-visualizzazione-dei-layers-vettoriali" id="toc-modificare-lo-stile-di-visualizzazione-dei-layers-vettoriali" class="nav-link" data-scroll-target="#modificare-lo-stile-di-visualizzazione-dei-layers-vettoriali"><span class="header-section-number">3.5</span> Modificare lo stile di visualizzazione dei layers vettoriali</a></li>
   </ul>
 </nav>
     </div>
@@ -265,10 +266,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 data-number="3.2" class="anchored" data-anchor-id="i-concetti-base-di-openlayers"><span class="header-section-number">3.2</span> I concetti base di openlayers:</h2>
 <p>Prima di iniziare a lavorare con OpenLayers è bene capire i concetti chiave di OpenLayers:</p>
 <table class="caption-top table">
-<colgroup>
-<col style="width: 36%">
-<col style="width: 63%">
-</colgroup>
 <thead>
 <tr class="header">
 <th>Col1</th>
@@ -277,27 +274,37 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </thead>
 <tbody>
 <tr class="odd">
-<td><strong>Map</strong></td>
+<td><a href="https://openlayers.org/en/latest/apidoc/module-ol_Map-Map.html"><strong>Map</strong></a></td>
 <td>La <em>map</em> è un componente chiave di OpenLayers. Per un <em>map</em> da visualizzare, sono necessari una <em>view</em>, uno o più <em>layers</em> e un contenitore di destinazione.</td>
 </tr>
 <tr class="even">
-<td><strong>View</strong></td>
+<td><a href="https://openlayers.org/en/latest/apidoc/module-ol_View-View.html"><strong>View</strong></a></td>
 <td>La <em>view</em> determina come la mappa è renderizzata. È usata per impostare la risoluzione, le coordinate del centro, ecc. È come una camera attraverso il quale si accede al contenuto della mappa.</td>
 </tr>
 <tr class="odd">
-<td><strong>Layers</strong></td>
-<td><em>Layers</em> possono essere alla mappa in ordine impilato, questo fa si che, i layers più in basso sono renderizzati prima dei layers più in alto. Layers possono essere sia <em>layers raster</em> (images), che <em>layers vettoriali</em> (punti/linee/poligoni).</td>
+<td><a href="https://openlayers.org/en/latest/apidoc/module-ol_layer_Layer-Layer.html"><strong>Layer</strong></a></td>
+<td><em>Layers</em> possono essere alla mappa in ordine impilato, questo fa si che, i layers più in basso sono renderizzati prima dei layers più in alto. Layers possono essere sia <a href="https://openlayers.org/en/latest/apidoc/module-ol_layer_Image-ImageLayer.html"><em>layers di immagini</em></a>(images), che <a href="https://openlayers.org/en/latest/apidoc/module-ol_layer_Vector-VectorLayer.html"><em>layers vettoriali</em></a> (punti/linee/poligoni), anche frazionati in tiles</td>
 </tr>
 <tr class="even">
 <td><strong>Source</strong></td>
-<td>Ogni layer ha una <em>source</em>, che conosce come caricare il contenuto del layer. Nel caso di <em>layers vettoriali</em>, la sorgente è letta da dati vettoriali usando una classe <em>format</em> (per esempio GeoJSON o KML) e riempe il layer con un numero di <em>features</em>.</td>
+<td>Ogni layer ha una <em>source</em>, che conosce come caricare il contenuto del layer. Nel caso di <a href="https://openlayers.org/en/latest/apidoc/module-ol_source_Vector-VectorSource.html"><em>source vettoriali</em></a>, la sorgente è letta da dati vettoriali usando una classe <em>format</em> (per esempio GeoJSON o KML) e riempe il layer con un numero di <em>features</em>.</td>
 </tr>
 <tr class="odd">
-<td><strong>Features</strong></td>
-<td><em>Features</em> rappresentano cose del mondo reale e possono essere renderizzate con differenti <em>geometries</em> (come punti, linee o poligoni) usando un dato <em>style</em>, che determina il suo aspetto (spessore delle linee, colore di riempiemento, etc).</td>
+<td><a href="https://openlayers.org/en/latest/apidoc/module-ol_Feature-Feature.html"><strong>Feature</strong></a></td>
+<td><em>Features</em> rappresentano cose del mondo reale e possono essere renderizzate con differenti <a href="https://openlayers.org/en/latest/apidoc/module-ol_geom_Geometry-Geometry.html"><em>geometries</em></a>(come punti, linee o poligoni) usando un dato <em>style</em>, che determina il suo aspetto (spessore delle linee, colore di riempiemento, etc).</td>
+</tr>
+<tr class="even">
+<td>Interaction</td>
+<td>La famiglia degli oggetti di interazione permette di interagire con l’oggetto mappa permettendo di indicare punti, creare, modificare e disegnare nuove entità etc</td>
+</tr>
+<tr class="odd">
+<td>Control</td>
+<td>La famiglia degli oggetti di interazione permette di interagire con l’oggetto mappa, modificando la visualizzazione, inserendo dei widget in posizioni prefissate sullo schermo, che fungono da interfaccia utente personalizzabile (per esempio i pulsanti di zoom)</td>
 </tr>
 </tbody>
 </table>
+<p>Tutti gli oggetti di Openlayers con la spiegazione precisa dei loro metodi, eventi e proprietà sono desccritti nelle <a href="https://openlayers.org/en/latest/apidoc/">API</a></p>
+<p>L’uso dei vari oggetti è dimostrato tramite <a href="https://openlayers.org/en/latest/examples/">esempi</a></p>
 </section>
 <section id="creare-una-mappa-di-base" class="level2" data-number="3.3">
 <h2 data-number="3.3" class="anchored" data-anchor-id="creare-una-mappa-di-base"><span class="header-section-number">3.3</span> Creare una mappa di base</h2>
@@ -351,6 +358,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>Che lo stile definito nel codice HTML scala l’elemento a tutto schermo</p></li>
 <li><p>Che l’oggetto Map è definito al minimo specificando il target con “map-container” (che deve corrispondere a quello definito nella pagina HTML), un set di layers ed una view</p></li>
 <li><p>che l’oggetto layer contiene una sorgente dati (source)</p></li>
+<li><p>che il centro della mappa è ricavato con la funzione <code>fromLonLat</code>. Di default la mappa viene visualizzata nele sistema di riferimento Web-Mercator e le coordinate espresse in latitudine e longitune devono essere convertite tramite una funzione</p></li>
 </ul>
 <p>Proviamo a:</p>
 <ul>
@@ -359,33 +367,123 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>Analizzare errori e connessioni di rete con gli strumenti di sviluppo del browser</p></li>
 </ul>
 </section>
-<section id="arricchicchire-la-mappa-con-informazioni-personalizzate" class="level2" data-number="3.4">
-<h2 data-number="3.4" class="anchored" data-anchor-id="arricchicchire-la-mappa-con-informazioni-personalizzate"><span class="header-section-number">3.4</span> Arricchicchire la mappa con informazioni personalizzate</h2>
+<section id="creare-una-mappa-con-informazioni-personalizzate" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="creare-una-mappa-con-informazioni-personalizzate"><span class="header-section-number">3.4</span> Creare una mappa con informazioni personalizzate</h2>
 <ul>
-<li>Aggiungiamo le informazioni relative ai confini amministrativi dei comune del Trentino (data/countries.geojson)</li>
+<li>Aggiungiamo le informazioni relative ai confini amministrativi degli stati del mondo (data/countries.geojson)</li>
 </ul>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode javascript code-with-copy"><code class="sourceCode javascript"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> GeoJSON <span class="im">from</span> <span class="st">'ol/format/GeoJSON'</span><span class="op">;</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> <span class="bu">Map</span> <span class="im">from</span> <span class="st">'ol/Map'</span><span class="op">;</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> VectorLayer <span class="im">from</span> <span class="st">'ol/layer/Vector'</span><span class="op">;</span></span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> VectorSource <span class="im">from</span> <span class="st">'ol/source/Vector'</span><span class="op">;</span></span>
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> View <span class="im">from</span> <span class="st">'ol/View'</span><span class="op">;</span></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co">// attenzione definiamo l'oggetto mappa e la assegnamo ad una variable per altri usi successivi</span></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> map <span class="op">=</span> <span class="kw">new</span> <span class="bu">Map</span>({</span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>  <span class="dt">target</span><span class="op">:</span> <span class="st">'map-container'</span><span class="op">,</span></span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>  <span class="dt">layers</span><span class="op">:</span> [</span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>    <span class="kw">new</span> <span class="fu">VectorLayer</span>({</span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>      <span class="dt">source</span><span class="op">:</span> <span class="kw">new</span> <span class="fu">VectorSource</span>({</span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>        <span class="dt">format</span><span class="op">:</span> <span class="kw">new</span> <span class="fu">GeoJSON</span>()<span class="op">,</span></span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>        <span class="dt">url</span><span class="op">:</span> <span class="st">'./data/countries.json'</span><span class="op">,</span></span>
-<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>      })<span class="op">,</span></span>
-<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>    })<span class="op">,</span></span>
-<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>  ]<span class="op">,</span></span>
-<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>  <span class="dt">view</span><span class="op">:</span> <span class="kw">new</span> <span class="fu">View</span>({</span>
-<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>    <span class="dt">center</span><span class="op">:</span> [<span class="dv">0</span><span class="op">,</span><span class="dv">0</span>]<span class="op">,</span></span>
-<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>    <span class="dt">zoom</span><span class="op">:</span> <span class="dv">2</span><span class="op">,</span></span>
-<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>  })<span class="op">,</span></span>
-<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>})<span class="op">;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> {fromLonLat} <span class="im">from</span> <span class="st">'ol/proj'</span><span class="op">;</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="co">// attenzione definiamo l'oggetto mappa e la assegnamo ad una variable per altri usi successivi</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> map <span class="op">=</span> <span class="kw">new</span> <span class="bu">Map</span>({</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>  <span class="dt">target</span><span class="op">:</span> <span class="st">'map-container'</span><span class="op">,</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>  <span class="dt">layers</span><span class="op">:</span> [</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>    <span class="kw">new</span> <span class="fu">VectorLayer</span>({</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>      <span class="dt">source</span><span class="op">:</span> <span class="kw">new</span> <span class="fu">VectorSource</span>({</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>        <span class="dt">format</span><span class="op">:</span> <span class="kw">new</span> <span class="fu">GeoJSON</span>()<span class="op">,</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>        <span class="dt">url</span><span class="op">:</span> <span class="st">'./data/countries.json'</span><span class="op">,</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>      })<span class="op">,</span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>    })<span class="op">,</span></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>  ]<span class="op">,</span></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>  <span class="dt">view</span><span class="op">:</span> <span class="kw">new</span> <span class="fu">View</span>({</span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>    <span class="dt">center</span><span class="op">:</span> <span class="fu">fromLonLat</span>([<span class="dv">0</span><span class="op">,</span> <span class="dv">0</span>])<span class="op">,</span></span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>    <span class="dt">zoom</span><span class="op">:</span> <span class="dv">2</span><span class="op">,</span></span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>  })<span class="op">,</span></span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>})<span class="op">;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li>uniamo insieme il layer del confini statali e delle mappe di base</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode javascript code-with-copy"><code class="sourceCode javascript"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> OSM <span class="im">from</span> <span class="st">'ol/source/OSM'</span><span class="op">;</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> TileLayer <span class="im">from</span> <span class="st">'ol/layer/Tile'</span><span class="op">;</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> GeoJSON <span class="im">from</span> <span class="st">'ol/format/GeoJSON'</span><span class="op">;</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> <span class="bu">Map</span> <span class="im">from</span> <span class="st">'ol/Map'</span><span class="op">;</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> VectorLayer <span class="im">from</span> <span class="st">'ol/layer/Vector'</span><span class="op">;</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> VectorSource <span class="im">from</span> <span class="st">'ol/source/Vector'</span><span class="op">;</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> View <span class="im">from</span> <span class="st">'ol/View'</span><span class="op">;</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> {fromLonLat} <span class="im">from</span> <span class="st">'ol/proj'</span><span class="op">;</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> stati <span class="op">=</span> <span class="kw">new</span> <span class="fu">VectorLayer</span>({</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>  <span class="dt">source</span><span class="op">:</span> <span class="kw">new</span> <span class="fu">VectorSource</span>({</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>    <span class="dt">format</span><span class="op">:</span> <span class="kw">new</span> <span class="fu">GeoJSON</span>()<span class="op">,</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    <span class="dt">url</span><span class="op">:</span> <span class="st">'./data/countries.json'</span><span class="op">,</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>  })<span class="op">,</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> osm <span class="op">=</span> <span class="kw">new</span> <span class="fu">TileLayer</span>({</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>  <span class="dt">source</span><span class="op">:</span> <span class="kw">new</span> <span class="fu">OSM</span>()<span class="op">,</span></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> map <span class="op">=</span> <span class="kw">new</span> <span class="bu">Map</span>({</span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>  <span class="dt">target</span><span class="op">:</span> <span class="st">'map-container'</span><span class="op">,</span></span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>  <span class="dt">layers</span><span class="op">:</span> [stati<span class="op">,</span> osm]<span class="op">,</span></span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>  <span class="dt">view</span><span class="op">:</span> <span class="kw">new</span> <span class="fu">View</span>({</span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>    <span class="dt">center</span><span class="op">:</span> <span class="fu">fromLonLat</span>([<span class="dv">0</span><span class="op">,</span> <span class="dv">0</span>])<span class="op">,</span></span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>    <span class="dt">zoom</span><span class="op">:</span> <span class="dv">2</span><span class="op">,</span></span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>  })<span class="op">,</span></span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li>e se volessimo aggiungere le regioni italiane … senza dimenticare di aggiungerlo alla lista dei layers dell’oggetto Map</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode javascript code-with-copy"><code class="sourceCode javascript"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> regioni <span class="op">=</span> <span class="kw">new</span> <span class="fu">VectorLayer</span>({</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">source</span><span class="op">:</span> <span class="kw">new</span> <span class="fu">VectorSource</span>({</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">format</span><span class="op">:</span> <span class="kw">new</span> <span class="fu">GeoJSON</span>()<span class="op">,</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">url</span><span class="op">:</span> <span class="st">'https://raw.githubusercontent.com/openpolis/geojson-italy/refs/heads/master/geojson/limits_IT_regions.geojson'</span><span class="op">,</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  })<span class="op">,</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>})<span class="op">;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li>e se vogliamo cambiare la visualizzazione di default basta intervenire sui parametri dell’oggetto View</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode javascript code-with-copy"><code class="sourceCode javascript"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>  view<span class="op">:</span> <span class="kw">new</span> <span class="fu">View</span>({</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="dt">center</span><span class="op">:</span> <span class="fu">fromLonLat</span>([<span class="fl">12.6</span><span class="op">,</span> <span class="fl">42.3</span>])<span class="op">,</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">zoom</span><span class="op">:</span> <span class="dv">6</span><span class="op">,</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  })<span class="op">,</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="modificare-lo-stile-di-visualizzazione-dei-layers-vettoriali" class="level2" data-number="3.5">
+<h2 data-number="3.5" class="anchored" data-anchor-id="modificare-lo-stile-di-visualizzazione-dei-layers-vettoriali"><span class="header-section-number">3.5</span> Modificare lo stile di visualizzazione dei layers vettoriali</h2>
+<p>lo stile è una proprietà dell’oggetto Layer e deve essere definito per mezzo di un oggetto <a href="https://openlayers.org/en/latest/apidoc/module-ol_style_Style.html">Style</a> e che può riguardare vari aspetti della visualizzazione come il colore, il riempimento, lo spessore, il tipo di linea etc… per esempio andiamo a definire uno stile diverso da quello di default per il layer delle regioni italiane:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode javascript code-with-copy"><code class="sourceCode javascript"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> Fill <span class="im">from</span> <span class="st">'ol/style/Fill.js'</span><span class="op">;</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> Stroke <span class="im">from</span> <span class="st">'ol/style/Stroke.js'</span><span class="op">;</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> Style <span class="im">from</span> <span class="st">'ol/style/Style.js'</span><span class="op">;</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> regioni <span class="op">=</span> <span class="kw">new</span> <span class="fu">VectorLayer</span>({</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>  <span class="dt">source</span><span class="op">:</span> <span class="kw">new</span> <span class="fu">VectorSource</span>({</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    <span class="dt">format</span><span class="op">:</span> <span class="kw">new</span> <span class="fu">GeoJSON</span>()<span class="op">,</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    <span class="dt">url</span><span class="op">:</span> <span class="st">'https://raw.githubusercontent.com/openpolis/geojson-italy/refs/heads/master/geojson/limits_IT_regions.geojson'</span><span class="op">,</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>  })<span class="op">,</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>  <span class="dt">style</span><span class="op">:</span> <span class="kw">new</span> <span class="fu">Style</span>({</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>    <span class="dt">stroke</span><span class="op">:</span> <span class="kw">new</span> <span class="fu">Stroke</span>({</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>      <span class="dt">color</span><span class="op">:</span> <span class="st">'orange'</span><span class="op">,</span></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>      <span class="dt">width</span><span class="op">:</span> <span class="dv">4</span><span class="op">,</span></span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>    })<span class="op">,</span></span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>    <span class="dt">fill</span><span class="op">:</span> <span class="kw">new</span> <span class="fu">Fill</span>({</span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>      <span class="dt">color</span><span class="op">:</span> <span class="st">'rgba(120, 0, 255, 0.25)'</span><span class="op">,</span></span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>    })<span class="op">,</span></span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>  })<span class="op">,</span></span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>})<span class="op">;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li>possiamo definire lo stile di un layer con una <em>style function</em> che genera uno stile dinamicamente a seconda della feature e della risoluzione (non dimentichiamoci di mettere il riferimento allo stile in</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode javascript code-with-copy"><code class="sourceCode javascript"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> <span class="bu">Text</span> <span class="im">from</span> <span class="st">'ol/style/Text.js'</span><span class="op">;</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">labelStyle</span>(feature<span class="op">,</span> resolution) {</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="kw">new</span> <span class="fu">Style</span>({</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>        <span class="dt">stroke</span><span class="op">:</span> <span class="kw">new</span> <span class="fu">Stroke</span>({</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>            <span class="dt">color</span><span class="op">:</span> <span class="st">'orange'</span><span class="op">,</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>            <span class="dt">width</span><span class="op">:</span> <span class="dv">4</span><span class="op">,</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>        })<span class="op">,</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>        <span class="dt">fill</span><span class="op">:</span> <span class="kw">new</span> <span class="fu">Fill</span>({</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>            <span class="dt">color</span><span class="op">:</span> <span class="st">'rgba(120, 0, 255, 0.25)'</span><span class="op">,</span></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>        })<span class="op">,</span></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>        <span class="dt">text</span><span class="op">:</span> <span class="kw">new</span> <span class="bu">Text</span>({</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>            <span class="dt">text</span><span class="op">:</span> feature<span class="op">.</span><span class="fu">get</span>(<span class="st">"reg_name"</span>)<span class="op">,</span></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>        })</span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>    })</span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 
 
 </section>

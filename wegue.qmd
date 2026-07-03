@@ -9,7 +9,7 @@ Wegue (WebGIS con OpenLayers and Vue) combina insieme il framework Vue.js Con Op
 
 ### Installazione
 
-E' possibile scaricare l'applicazione dal repository di github <https://github.com/wegue-oss/wegue> direttamente sotto forma di[file .zip](git%20clone%20https://github.com/wegue-oss/wegue) oppure clonare il repository con git (usiamo per uniformità la versione 2 di wegue)
+E' possibile scaricare l'applicazione dal repository di github <https://github.com/wegue-oss/wegue> direttamente sotto forma di [file .zip](git%20clone%20https://github.com/wegue-oss/wegue) oppure clonare il repository con git (usiamo per uniformità la versione 2 di wegue)
 
 ``` bash
 git clone https://github.com/wegue-oss/wegue
@@ -321,8 +321,51 @@ La webmap può essere facilmente localizzata andando ad aggiungere un file nella
 L'applicazione consente di lavorare con differenti configurazioni. Si noti infatti che nella cartella public/static sono presenti diversi files che iniziano per app_conf e terminano per json. In questo caso è possibile richiamare le configurazioni alternative aggiungendo il parametro appCtx=\[stringa tra `app_conf-` e `.json`\]. Per esempio:
 
 | File di configurazione in app/public/static | url |
-|-------------------------|-----------------------------------------------|
+|-------------------------|----------------------------------------------|
 | app-conf.json | <http://localhost:5173/index.html> |
 | app-conf-minimal.json | <http://localhost:5173/index.html?appCtx=minimal> |
 | app-conf-sidebar.json | <http://localhost:5173/index.html?appCtx=sidebar> |
 | app-conf-projected.json | <http://localhost:5173/index.html?appCtx=projected> |
+
+## Proiezioni Alternative
+
+L'applicazione gestisce nativamente le proiezioni WGS84 (EPSG:4326) e Web Mercator (EPSG:3857), in particolare la finestra di mappa, come in openlayers usa come proiezione predefinita il Web Mercator, quindi eventuali coordinate devono essere espresse in quel sistema di riferimento. E consentito usare proiezioni differenti dichiarandole nella sezione `"projectionDefs"`
+
+``` javascript
+  "projectionDefs": [
+    [
+      "EPSG:3003",
+      "+proj=tmerc +lat_0=0 +lon_0=9 +k=0.9996 +x_0=1500000 +y_0=0 +ellps=intl +towgs84=-104.1,-49.1,-9.9,0.971,-2.917,0.714,-11.68 +units=m +no_defs"
+    ],
+    [
+      "EPSG:32632",
+      "+proj=utm +zone=32 +datum=WGS84 +units=m +no_defs"
+    ],
+    [
+      "EPSG:25832",
+      "+proj=utm +zone=32 +ellps=GRS80 +towgs84=128.8,17.85,0,0,0,0,0 +units=m +no_defs"
+    ]
+  ],
+```
+
+Deve essere assegnata la proiezione della finestra di mappa nella sezione `"mapProiection"`
+
+``` json
+  "mapProjection": {
+    "code": "EPSG:3003",
+    "units": "m",
+    "extent": [1716014, 5023919, 1737137, 5038662]
+  },
+```
+
+E' dopo necessario assegnare la corretta proiezione ai layer usando la proprietà `"projection"` con la sigla della proiezione definita della sezione `"projectionDefs"` Qualora non è assegnata la proiezione, viene automaticamente usata la proiezione della mappa stabilita nella sezione `"mapProiection"`
+
+## QGIS2Wegue
+
+Per semplificare la compilazione del file di configurazione esiste un plugin di QGIS scaricabile dal repository ufficale che si chiama QGIS2Wegue.
+
+![](images/qgis2wegue_install.png)
+
+Una volta installato il plugin è in grado di generare una configurazione di Wegue a partire dai layers correntemente caricati nel progetto di QGIS importando al contempo la posizione iniziale della mappa ed il relativo livello di zoom. Il Plugin non è molto aggiornato (è del 2022 e genera file di configurazione compatibili con la versione 1.0.0 di Wegue ), ne sofisticato, infatti ammette solamente layers del tipo WMS, XYZ, KML, GeoJSON, WFS, non gestisce la ricollocazione delle sorgenti dati su file, non gestisce gli stili e differenti proiezioni, quindi è da considerarsi utile per ottenere iun file di configurazione da adattare e precisare manualmente.
+
+![](images/qgis2wegue_plugin.png)
