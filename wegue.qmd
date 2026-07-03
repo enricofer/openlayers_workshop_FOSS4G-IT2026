@@ -372,7 +372,9 @@ Una volta installato il plugin è in grado di generare una configurazione di Weg
 
 <http://localhost:5173/index.html?appCtx=qgis> render della mappa generata con QGIS2Wegue
 
-## Personalizzazione dell'interfaccia utentecdolta ulteriormente configurati e la cui presenza nell'interfaccia è governata dalla sezione `"modules"` nel file `app-conf.json`
+## Personalizzazione dell'interfaccia utente
+
+L'applicazione è corredata a una serie di componenti di base la cui presenza nell'interfaccia è governata dalla sezione `"modules"` nel file `app-conf.json`
 
 | Componente | identificativo | descrizione |
 |----|----|----|
