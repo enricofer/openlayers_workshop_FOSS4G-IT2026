@@ -1,6 +1,6 @@
 project:
   type: book
-  output-dir: _output/website
+  output-dir: docs
 
 book:
   title: "OSS4G-IT 2026 OpenLayers Workshop"
