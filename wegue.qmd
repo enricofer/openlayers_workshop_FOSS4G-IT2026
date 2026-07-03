@@ -321,13 +321,13 @@ La webmap può essere facilmente localizzata andando ad aggiungere un file nella
 L'applicazione consente di lavorare con differenti configurazioni. Si noti infatti che nella cartella public/static sono presenti diversi files che iniziano per app_conf e terminano per json. In questo caso è possibile richiamare le configurazioni alternative aggiungendo il parametro appCtx=\[stringa tra `app_conf-` e `.json`\]. Per esempio:
 
 | File di configurazione in app/public/static | url |
-|-------------------------|----------------------------------------------|
+|--------------------------|----------------------------------------------|
 | app-conf.json | <http://localhost:5173/index.html> |
 | app-conf-minimal.json | <http://localhost:5173/index.html?appCtx=minimal> |
 | app-conf-sidebar.json | <http://localhost:5173/index.html?appCtx=sidebar> |
 | app-conf-projected.json | <http://localhost:5173/index.html?appCtx=projected> |
 
-## Proiezioni Alternative
+## Sistemi di riferimento
 
 L'applicazione gestisce nativamente le proiezioni WGS84 (EPSG:4326) e Web Mercator (EPSG:3857), in particolare la finestra di mappa, come in openlayers usa come proiezione predefinita il Web Mercator, quindi eventuali coordinate devono essere espresse in quel sistema di riferimento. E consentito usare proiezioni differenti dichiarandole nella sezione `"projectionDefs"`
 
@@ -369,3 +369,172 @@ Per semplificare la compilazione del file di configurazione esiste un plugin di 
 Una volta installato il plugin è in grado di generare una configurazione di Wegue a partire dai layers correntemente caricati nel progetto di QGIS importando al contempo la posizione iniziale della mappa ed il relativo livello di zoom. Il Plugin non è molto aggiornato (è del 2022 e genera file di configurazione compatibili con la versione 1.0.0 di Wegue ), ne sofisticato, infatti ammette solamente layers del tipo WMS, XYZ, KML, GeoJSON, WFS, non gestisce la ricollocazione delle sorgenti dati su file, non gestisce gli stili e differenti proiezioni, quindi è da considerarsi utile per ottenere iun file di configurazione da adattare e precisare manualmente.
 
 ![](images/qgis2wegue_plugin.png)
+
+<http://localhost:5173/index.html?appCtx=qgis> render della mappa generata con QGIS2Wegue
+
+## Personalizzazione dell'interfaccia utentecdolta ulteriormente configurati e la cui presenza nell'interfaccia è governata dalla sezione `"modules"` nel file `app-conf.json`
+
+| Componente | identificativo | descrizione |
+|----|----|----|
+| [**GeoCoder**](https://wegue-oss.github.io/wegue/#/module-configuration?id=geocoder) | `wgu-geocoder` | Componente per ricercare luoghi geografici per mezzo di servizi web |
+| [**GeoLocator**](https://wegue-oss.github.io/wegue/#/module-configuration?id=geolocator) | `wgu-geolocator` | Marker personalizzato per il servizio di geo coding |
+| [**HelpWindow**](https://wegue-oss.github.io/wegue/#/module-configuration?id=helpwindow) | `wgu-helpwin` | Modulo per inserire una pagina di spiegazione |
+| [**InfoClick**](https://wegue-oss.github.io/wegue/#/module-configuration?id=infoclick) | `wgu-infoclick` | Modulo per estrarre informazioni dai layer visibili al click sulla mappa (*carotaggio*) |
+| [**LayerList**](https://wegue-oss.github.io/wegue/#/module-configuration?id=layerlist) | `wgu-layerlist` | controllo di visibilità e di opacita per i layer correntemente caricati (solo i layer non di base) |
+| [**MeasureTool**](https://wegue-oss.github.io/wegue/#/module-configuration?id=measuretool) | `wgu-measuretool` | Strumento per misurazioni sulla mappa |
+| [**ZoomToMaxExtent**](https://wegue-oss.github.io/wegue/#/module-configuration?id=zoomtomaxextent) | `wgu-zoomtomaxextent` | Bottone per zoomare alla massima estensione degli elementi di mappa |
+| [**AttributeTable**](https://wegue-oss.github.io/wegue/#/module-configuration?id=attributetable) | `wgu-attributetable` | Tabella degli attributi dei layers vettoriali presenti in mappa |
+| [**MapRecorder**](https://wegue-oss.github.io/wegue/#/module-configuration?id=maprecorder) | `wgu-maprecorder` | Registratore per realizzare storie sulla mappa |
+| [**LocaleSwitcher**](https://wegue-oss.github.io/wegue/#/module-configuration?id=localeswitcher) | `wgu-localeswitcher` | Strumento per cambiare il linguaggio di localizzazione in modo interattivo |
+| [**Map Overlay**](https://wegue-oss.github.io/wegue/#/reusable-components?id=map-overlay) | `wgu-map-overlay` | L'overlay è un elemento attaccato alla mappa in una precisa posizione che si sposta al cambiamento della visualizzazione, utile per annotazioni geolocalizzate |
+
+### Moduli personalizzati
+
+Ma L'aspetto più significativo di Wegue è la possibilità di modificare parti strutturali dell'interfaccia ed aggiungere componenti personalizzati in modo molto semplice.
+
+Prima dell'uso, I componenti devono essere importati e dichiarati nel file `app/WguAppTemplate.vue` nella sezione `"components"`
+
+Wegue è un'applicazione costruita sul framework [VUE](https://vuejs.org/) e sulla libreria di componenti visuali [Vuetify](https://vuetifyjs.com/) ed i componenti sono quindi implementati secondo lo standard del framework che prevede la dichiarazione in un'unico file del template visuale, del codice e dello stile CSS relativo. Wegue aggiunge poi una serie di elementi di help che consentono di usufruire dell'oggetto mappa, e quindi interagire con openlayers e l'EventBus, cioè la logica di emissione e ricezione di segnali che permette di interagire a determinate situazioni, previste dal framework o implementabili dallo sviluppatore.
+
+Per comprendere il meccanismo di implementazione di un componente facciamo riferimento al componente di esempio che sta in app/components/SampleModule.vue ed è già precaricato di default nel file di template `app/WguAppTemplate.vue:`
+
+``` vue
+<!-- The template contains the HTML of our module  -->
+<template>
+  <!--  
+Our module builds upon the 'wgu-module-card' it handles the integration into Wegue like adding a button in the toolbar 
+-->
+  <wgu-module-card
+    v-bind="$attrs"
+    class="sample-module"
+    :icon="icon"
+  >
+    <!--
+    Here goes the actual content of the module We use a the component 'v-card-text' from the Vuetify library
+    -->
+    <v-card-text>
+      <!--
+      Note the double curly brackets. They contain variables that dynamically change.
+      The way how they change is done in the <script> part
+      -->
+      <b>Zoom:</b> {{ zoom }} <br />
+      <b>Center:</b> {{ center }}
+    </v-card-text>
+  </wgu-module-card>
+</template>
+
+<script>
+// the module card is a the template for a typical Wegue module
+import ModuleCard from '@/components/modulecore/ModuleCard.vue';
+// we import a so called "composable" that helps us to interact with the map
+import { useMap } from '@/composables/Map';
+// an OpenLayers helper function to display coordinates
+import { toStringXY } from 'ol/coordinate';
+// an OpenLayer helper function to transform coordinate reference systems
+import { transform } from 'ol/proj';
+
+export default {
+  name: 'sample-module',
+  inheritAttrs: false,
+  components: {
+    'wgu-module-card': ModuleCard
+  },
+  props: {
+    icon: { type: String, required: false, default: 'md:star' }
+  },
+  // make sure to call the 'useMap' composable and return its resulting bindings
+  setup () {
+    const { map, layers } = useMap();
+    return { map, layers };
+  },
+  // here we define variables that are used in the HTML above
+  data () {
+    return {
+      zoom: '',
+      center: ''
+    };
+  },
+  watch: {
+    map: {
+      handler (newMap) {
+        if (newMap) {
+          this.onMapBound();
+        }
+      },
+      immediate: true
+    }
+  },
+  methods: {
+    /**
+     * This function is called once the map is bound to the application
+     */
+    onMapBound () {
+      // the 'useMap' composable provides access to our OpenLayer map
+      // via its returned `map` binding. Returning this binding from
+      // the `setup` lifecycle hook makes it accessible via 'this.map'
+      // here we get the 'view' from the map
+      const view = this.map.getView();
+      // we call the function to extract zoom and center from the map
+      // once it is initially created
+      this.extractMapViewProperties(view);
+      // to ensure that we react on updates of the map,
+      // we need to register a listener
+      view.on('change', () => {
+        // always when the map view is changing we extract
+        // the current zoom and center from it
+        this.extractMapViewProperties(view);
+      });
+    },
+
+    /**
+     * We extract the current zoom and center coordinates
+     * from the OpenLayers view and store the values
+     * to our module's 'zoom' and 'center' variables
+     *
+     * @param {ol.View} view The OpenLayers view
+     */
+    extractMapViewProperties (view) {
+      this.zoom = Math.round(view.getZoom());
+
+      const sourceCrs = view.getProjection();
+      const targetCrs = 'EPSG:4326';
+
+      // we transform the coordinates from the map projection to WGS84 (EPSG:3857)
+      const centerTargetCrs = transform(view.getCenter(), sourceCrs, targetCrs);
+
+      // create a readable string from the coordinates
+      this.center = toStringXY(
+        centerTargetCrs,
+        4 // <-- number of digits after comma
+      );
+    }
+  }
+};
+</script>
+
+<!-- Here we do the styling of our module -->
+<style scoped>
+
+  /* our module has the class '.sample-module' and we reference it here */
+  .sample-module.wgu-floating {
+    left: auto !important;
+    top: 300px !important;
+    right: 10px;
+  }
+
+</style>
+```
+
+Nella configurazione di default il componente si attiva cliccando sull'icona a stella e fa comparire una finestra che contiene le informazioni di zoom e le coordinate del centro visibile della mappa, modificando le informazioni in tempo reale
+
+## Configurazione finale
+
+La configurazione finale dell'applicazione può essere scaricata da [qui](/assets/app.zip).
+
+## Esempio di implementazione di Wegue
+
+Ho utilizzato Wegue per fornire un'interfaccia per l'estrazione di dati cartografici di base relativi al comune di Padova. L'applicazione si chiama DBTMAN e consente di estrarre porzioni del rilievo in point cloud del territorio comunale, di estrarre informazioni altimetriche dal DTM e dal DSM e di esportare porzioni del DB topografico in formato CAd
+
+<https://urbanistica.comune.padova.it/dbtman/prod/>
+
+![](images/dbtman.jpg)
