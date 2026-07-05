@@ -24,4 +24,4 @@ Per seguire con profitto il workshop è consigliabile una conoscenza di base del
 
 ## Prima di iniziare
 
-Prima di iniziare il workshop, segui le istruzioni nella pagina [Setup](setup.qmd) per configurare la tua macchina locale.
+Prima di iniziare il workshop, segui le istruzioni nella pagina [Setup](setup.qmd) per configurare nodejs sulla tua macchina locale.
