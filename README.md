@@ -2,7 +2,7 @@
 
 # Pubblicare dati geospaziali e realizzare applicazioni cartografiche su web con OpenLayers e WEGUE webgis
 
-[[http://enricofer.](https://enricofer.github.io/openlayers_workshop_FOSS4G-IT2026/)](https://enricofer.github.io/openlayers_workshop_FOSS4G-IT2026/)
+[https://enricofer.github.io/openlayers_workshop_FOSS4G-IT2026/](https://enricofer.github.io/openlayers_workshop_FOSS4G-IT2026/)
 
 ![](images/Cc_by-sa.png) (C)2026 [Enrico Ferreguti](https://talks.osgeo.org/foss4g-it-2026/speaker/G99NKE/)
 
